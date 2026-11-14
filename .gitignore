@@ -1,0 +1,32 @@
+# Cấu hình và bí mật
+.env
+.env.live
+*.pem
+*.key
+
+# Dữ liệu thật của quán: TUYỆT ĐỐI không commit (cam kết ở QS02)
+data/real/
+data/live/
+uploads/
+exports/
+backups/
+*.live.xlsx
+*.live.csv
+probe-*.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+
+# Hệ điều hành / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

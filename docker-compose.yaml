@@ -1,0 +1,86 @@
+# T06 - Hệ thống quản lý Cửa hàng A
+#   Demo:  docker compose up -d                                    (đọc .env, cổng 3000/8000/5432)
+#   Live:  docker compose -p t06-live --env-file .env.live up -d   (cổng 3001/8001/5433)
+# Hai bản chạy song song: khác project (-p), khác volume dữ liệu, khác cổng, khác CSDL.
+# LƯU Ý: không dùng `env_file:` cố định ở đây, vì sẽ làm bản Live đọc nhầm .env của Demo.
+# Biến được truyền bằng `environment:` từ file đã chọn qua --env-file.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-t06_pos_db}
+      POSTGRES_USER: ${DB_USER:-t06}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Hãy điền DB_PASSWORD trong file .env / .env.live}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      # Cổng ngoài (DB_PORT) chỉ để bạn kết nối bằng công cụ SQL; backend luôn dùng cổng nội bộ 5432 qua mạng Compose.
+      - "${DB_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-t06} -d ${DB_NAME:-t06_pos_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_MODE: ${APP_MODE:-demo}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-t06_pos_db}
+      DB_USER: ${DB_USER:-t06}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SESSION_HOURS: ${SESSION_HOURS:-12}
+      SECRET_KEY: ${SECRET_KEY:-}
+      ATTENDANCE_QR_SECRET: ${ATTENDANCE_QR_SECRET:-}
+      OWNER_USERNAME: ${OWNER_USERNAME:-}
+      OWNER_PASSWORD: ${OWNER_PASSWORD:-}
+      DEMO_SEED: ${DEMO_SEED:-true}
+      E01_ROLES: ${E01_ROLES:-true}
+      E02_AUTH: ${E02_AUTH:-true}
+      E03_AUDIT: ${E03_AUDIT:-true}
+      E04_SHIFT_TAG: ${E04_SHIFT_TAG:-true}
+      E05_EXPORT: ${E05_EXPORT:-true}
+      E09_QR_ATTENDANCE: ${E09_QR_ATTENDANCE:-true}
+      E13_AUTO_DRAFT: ${E13_AUTO_DRAFT:-true}
+      QR_BASE_URL: ${QR_BASE_URL:-}
+      POS365_BASE_URL: ${POS365_BASE_URL:-}
+      POS365_USERNAME: ${POS365_USERNAME:-}
+      POS365_PASSWORD: ${POS365_PASSWORD:-}
+      POS365_AUTH_MODE: ${POS365_AUTH_MODE:-credentials}
+      POS365_EXTRA_HEADERS: ${POS365_EXTRA_HEADERS:-}
+      POS365_TOP_PARAM: ${POS365_TOP_PARAM:-$$top}
+      POS365_SKIP_PARAM: ${POS365_SKIP_PARAM:-$$skip}
+      POS365_PAGE_SIZE: ${POS365_PAGE_SIZE:-20}
+      POS365_SYNC_FROM_DATE: ${POS365_SYNC_FROM_DATE:-}
+      POS365_SYNC_MAX_PAGES: ${POS365_SYNC_MAX_PAGES:-500}
+      POS365_REQUEST_TIMEOUT: ${POS365_REQUEST_TIMEOUT:-30}
+    volumes:
+      - ./data:/app/data:ro        # dữ liệu mẫu giả lập (data/mock) cho nút "Nạp dữ liệu mẫu" ở Demo
+      - uploads:/app/uploads       # ảnh hóa đơn: nằm trong volume riêng, không vào repo
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"   # tài liệu API tự sinh: http://localhost:${BACKEND_PORT}/docs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/api/health').status==200 else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"    # mở http://localhost:3000 (hoặc http://<IP_LAN>:3001 cho Live)
+
+volumes:
+  db_data:
+  uploads:

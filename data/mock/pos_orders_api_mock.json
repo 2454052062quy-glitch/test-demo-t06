@@ -1,0 +1,2237 @@
+{
+ "__count": 248,
+ "results": [
+  {
+   "Id": 100001,
+   "Code": "HDMOCK-000001",
+   "PurchaseDate": "2026-10-01T09:09:25.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100002,
+   "Code": "HDMOCK-000002",
+   "PurchaseDate": "2026-10-01T10:37:03.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100003,
+   "Code": "HDMOCK-000003",
+   "PurchaseDate": "2026-10-01T12:26:04.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100004,
+   "Code": "HDMOCK-000004",
+   "PurchaseDate": "2026-10-01T00:52:36.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100005,
+   "Code": "HDMOCK-000005",
+   "PurchaseDate": "2026-10-01T11:03:14.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100006,
+   "Code": "HDMOCK-000006",
+   "PurchaseDate": "2026-10-01T03:34:07.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100007,
+   "Code": "OFFLINEMOCK-000007",
+   "PurchaseDate": "2026-10-01T02:37:36.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100008,
+   "Code": "HDMOCK-000008",
+   "PurchaseDate": "2026-10-01T01:36:03.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100009,
+   "Code": "HDMOCK-000009",
+   "PurchaseDate": "2026-10-02T09:29:37.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100010,
+   "Code": "HDMOCK-000010",
+   "PurchaseDate": "2026-10-02T04:44:49.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100011,
+   "Code": "HDMOCK-000011",
+   "PurchaseDate": "2026-10-02T14:56:21.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100012,
+   "Code": "HDMOCK-000012",
+   "PurchaseDate": "2026-10-02T02:32:26.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100013,
+   "Code": "HDMOCK-000013",
+   "PurchaseDate": "2026-10-02T12:02:42.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100014,
+   "Code": "OFFLINEMOCK-000014",
+   "PurchaseDate": "2026-10-02T14:37:51.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100015,
+   "Code": "HDMOCK-000015",
+   "PurchaseDate": "2026-10-02T14:44:42.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100016,
+   "Code": "HDMOCK-000016",
+   "PurchaseDate": "2026-10-02T13:18:45.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100017,
+   "Code": "HDMOCK-000017",
+   "PurchaseDate": "2026-10-03T10:10:39.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100018,
+   "Code": "HDMOCK-000018",
+   "PurchaseDate": "2026-10-03T08:08:47.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100019,
+   "Code": "HDMOCK-000019",
+   "PurchaseDate": "2026-10-03T01:10:28.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100020,
+   "Code": "HDMOCK-000020",
+   "PurchaseDate": "2026-10-03T07:45:26.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100021,
+   "Code": "OFFLINEMOCK-000021",
+   "PurchaseDate": "2026-10-03T01:11:09.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100022,
+   "Code": "HDMOCK-000022",
+   "PurchaseDate": "2026-10-03T04:16:18.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100023,
+   "Code": "HDMOCK-000023",
+   "PurchaseDate": "2026-10-03T09:08:44.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100024,
+   "Code": "HDMOCK-000024",
+   "PurchaseDate": "2026-10-03T11:25:25.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100025,
+   "Code": "HDMOCK-000025",
+   "PurchaseDate": "2026-10-04T00:12:04.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100026,
+   "Code": "HDMOCK-000026",
+   "PurchaseDate": "2026-10-04T09:38:03.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100027,
+   "Code": "HDMOCK-000027",
+   "PurchaseDate": "2026-10-04T02:23:39.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100028,
+   "Code": "OFFLINEMOCK-000028",
+   "PurchaseDate": "2026-10-04T03:40:16.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100029,
+   "Code": "HDMOCK-000029",
+   "PurchaseDate": "2026-10-04T02:54:31.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100030,
+   "Code": "HDMOCK-000030",
+   "PurchaseDate": "2026-10-04T01:09:06.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100031,
+   "Code": "HDMOCK-000031",
+   "PurchaseDate": "2026-10-04T14:53:44.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100032,
+   "Code": "HDMOCK-000032",
+   "PurchaseDate": "2026-10-04T03:44:34.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100033,
+   "Code": "HDMOCK-000033",
+   "PurchaseDate": "2026-10-05T07:33:23.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100034,
+   "Code": "HDMOCK-000034",
+   "PurchaseDate": "2026-10-05T06:39:51.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100035,
+   "Code": "OFFLINEMOCK-000035",
+   "PurchaseDate": "2026-10-05T06:12:33.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100036,
+   "Code": "HDMOCK-000036",
+   "PurchaseDate": "2026-10-04T23:50:17.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100037,
+   "Code": "HDMOCK-000037",
+   "PurchaseDate": "2026-10-05T13:51:59.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100038,
+   "Code": "HDMOCK-000038",
+   "PurchaseDate": "2026-10-05T06:06:14.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100039,
+   "Code": "HDMOCK-000039",
+   "PurchaseDate": "2026-10-05T14:39:57.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100040,
+   "Code": "HDMOCK-000040",
+   "PurchaseDate": "2026-10-05T01:53:42.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100041,
+   "Code": "HDMOCK-000041",
+   "PurchaseDate": "2026-10-06T14:56:11.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100042,
+   "Code": "OFFLINEMOCK-000042",
+   "PurchaseDate": "2026-10-06T13:25:47.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100043,
+   "Code": "HDMOCK-000043",
+   "PurchaseDate": "2026-10-05T23:30:37.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100044,
+   "Code": "HDMOCK-000044",
+   "PurchaseDate": "2026-10-06T10:09:35.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100045,
+   "Code": "HDMOCK-000045",
+   "PurchaseDate": "2026-10-06T02:33:47.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100046,
+   "Code": "HDMOCK-000046",
+   "PurchaseDate": "2026-10-05T23:30:13.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100047,
+   "Code": "HDMOCK-000047",
+   "PurchaseDate": "2026-10-06T07:34:26.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100048,
+   "Code": "HDMOCK-000048",
+   "PurchaseDate": "2026-10-06T13:42:37.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 115000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100049,
+   "Code": "OFFLINEMOCK-000049",
+   "PurchaseDate": "2026-10-07T03:33:32.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100050,
+   "Code": "HDMOCK-000050",
+   "PurchaseDate": "2026-10-07T03:11:09.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100051,
+   "Code": "HDMOCK-000051",
+   "PurchaseDate": "2026-10-07T09:43:33.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100052,
+   "Code": "HDMOCK-000052",
+   "PurchaseDate": "2026-10-07T06:12:17.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100053,
+   "Code": "HDMOCK-000053",
+   "PurchaseDate": "2026-10-06T23:48:57.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100054,
+   "Code": "HDMOCK-000054",
+   "PurchaseDate": "2026-10-07T07:28:32.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100055,
+   "Code": "HDMOCK-000055",
+   "PurchaseDate": "2026-10-07T07:59:35.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100056,
+   "Code": "OFFLINEMOCK-000056",
+   "PurchaseDate": "2026-10-07T02:25:28.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100057,
+   "Code": "HDMOCK-000057",
+   "PurchaseDate": "2026-10-08T12:04:13.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100058,
+   "Code": "HDMOCK-000058",
+   "PurchaseDate": "2026-10-08T10:09:16.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100059,
+   "Code": "HDMOCK-000059",
+   "PurchaseDate": "2026-10-08T11:56:31.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100060,
+   "Code": "HDMOCK-000060",
+   "PurchaseDate": "2026-10-08T11:21:26.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100061,
+   "Code": "HDMOCK-000061",
+   "PurchaseDate": "2026-10-08T10:01:21.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100062,
+   "Code": "HDMOCK-000062",
+   "PurchaseDate": "2026-10-08T11:21:33.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100063,
+   "Code": "OFFLINEMOCK-000063",
+   "PurchaseDate": "2026-10-08T02:58:50.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100064,
+   "Code": "HDMOCK-000064",
+   "PurchaseDate": "2026-10-08T07:02:57.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100065,
+   "Code": "HDMOCK-000065",
+   "PurchaseDate": "2026-10-09T12:54:58.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100066,
+   "Code": "HDMOCK-000066",
+   "PurchaseDate": "2026-10-09T14:44:20.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100067,
+   "Code": "HDMOCK-000067",
+   "PurchaseDate": "2026-10-09T12:57:04.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100068,
+   "Code": "HDMOCK-000068",
+   "PurchaseDate": "2026-10-09T07:05:38.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100069,
+   "Code": "HDMOCK-000069",
+   "PurchaseDate": "2026-10-09T02:29:00.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100070,
+   "Code": "OFFLINEMOCK-000070",
+   "PurchaseDate": "2026-10-09T00:33:45.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100071,
+   "Code": "HDMOCK-000071",
+   "PurchaseDate": "2026-10-09T00:11:12.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100072,
+   "Code": "HDMOCK-000072",
+   "PurchaseDate": "2026-10-09T08:28:32.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100073,
+   "Code": "HDMOCK-000073",
+   "PurchaseDate": "2026-10-09T23:30:02.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100074,
+   "Code": "HDMOCK-000074",
+   "PurchaseDate": "2026-10-10T14:15:59.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100075,
+   "Code": "HDMOCK-000075",
+   "PurchaseDate": "2026-10-10T14:34:53.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100076,
+   "Code": "HDMOCK-000076",
+   "PurchaseDate": "2026-10-10T06:21:12.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100077,
+   "Code": "OFFLINEMOCK-000077",
+   "PurchaseDate": "2026-10-10T00:53:08.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100078,
+   "Code": "HDMOCK-000078",
+   "PurchaseDate": "2026-10-10T12:10:03.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100079,
+   "Code": "HDMOCK-000079",
+   "PurchaseDate": "2026-10-10T06:44:18.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100080,
+   "Code": "HDMOCK-000080",
+   "PurchaseDate": "2026-10-10T07:28:00.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100081,
+   "Code": "HDMOCK-000081",
+   "PurchaseDate": "2026-10-11T06:02:56.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100082,
+   "Code": "HDMOCK-000082",
+   "PurchaseDate": "2026-10-10T23:30:24.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100083,
+   "Code": "HDMOCK-000083",
+   "PurchaseDate": "2026-10-11T06:32:49.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100084,
+   "Code": "OFFLINEMOCK-000084",
+   "PurchaseDate": "2026-10-11T03:25:37.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100085,
+   "Code": "HDMOCK-000085",
+   "PurchaseDate": "2026-10-11T08:40:14.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100086,
+   "Code": "HDMOCK-000086",
+   "PurchaseDate": "2026-10-11T09:46:31.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100087,
+   "Code": "HDMOCK-000087",
+   "PurchaseDate": "2026-10-11T00:52:53.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100088,
+   "Code": "HDMOCK-000088",
+   "PurchaseDate": "2026-10-10T23:52:43.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100089,
+   "Code": "HDMOCK-000089",
+   "PurchaseDate": "2026-10-12T00:08:40.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100090,
+   "Code": "HDMOCK-000090",
+   "PurchaseDate": "2026-10-12T00:40:01.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100091,
+   "Code": "OFFLINEMOCK-000091",
+   "PurchaseDate": "2026-10-11T23:30:51.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100092,
+   "Code": "HDMOCK-000092",
+   "PurchaseDate": "2026-10-12T14:16:51.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100093,
+   "Code": "HDMOCK-000093",
+   "PurchaseDate": "2026-10-12T06:47:41.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100094,
+   "Code": "HDMOCK-000094",
+   "PurchaseDate": "2026-10-12T14:58:43.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100095,
+   "Code": "HDMOCK-000095",
+   "PurchaseDate": "2026-10-12T01:38:09.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100096,
+   "Code": "HDMOCK-000096",
+   "PurchaseDate": "2026-10-12T03:00:30.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100097,
+   "Code": "HDMOCK-000097",
+   "PurchaseDate": "2026-10-13T05:43:31.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100098,
+   "Code": "OFFLINEMOCK-000098",
+   "PurchaseDate": "2026-10-13T13:49:07.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100099,
+   "Code": "HDMOCK-000099",
+   "PurchaseDate": "2026-10-13T14:01:18.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100100,
+   "Code": "HDMOCK-000100",
+   "PurchaseDate": "2026-10-13T07:24:13.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100101,
+   "Code": "HDMOCK-000101",
+   "PurchaseDate": "2026-10-13T03:47:33.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100102,
+   "Code": "HDMOCK-000102",
+   "PurchaseDate": "2026-10-13T02:45:23.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100103,
+   "Code": "HDMOCK-000103",
+   "PurchaseDate": "2026-10-12T23:30:00.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100104,
+   "Code": "HDMOCK-000104",
+   "PurchaseDate": "2026-10-13T03:26:22.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100105,
+   "Code": "OFFLINEMOCK-000105",
+   "PurchaseDate": "2026-10-13T23:30:48.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100106,
+   "Code": "HDMOCK-000106",
+   "PurchaseDate": "2026-10-13T23:57:47.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100107,
+   "Code": "HDMOCK-000107",
+   "PurchaseDate": "2026-10-14T11:24:55.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100108,
+   "Code": "HDMOCK-000108",
+   "PurchaseDate": "2026-10-14T07:54:03.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100109,
+   "Code": "HDMOCK-000109",
+   "PurchaseDate": "2026-10-14T03:15:17.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100110,
+   "Code": "HDMOCK-000110",
+   "PurchaseDate": "2026-10-14T12:56:01.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 115000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100111,
+   "Code": "HDMOCK-000111",
+   "PurchaseDate": "2026-10-14T01:03:59.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100112,
+   "Code": "OFFLINEMOCK-000112",
+   "PurchaseDate": "2026-10-14T08:31:03.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100113,
+   "Code": "HDMOCK-000113",
+   "PurchaseDate": "2026-10-15T12:21:18.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100114,
+   "Code": "HDMOCK-000114",
+   "PurchaseDate": "2026-10-15T11:41:15.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100115,
+   "Code": "HDMOCK-000115",
+   "PurchaseDate": "2026-10-15T02:10:41.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100116,
+   "Code": "HDMOCK-000116",
+   "PurchaseDate": "2026-10-15T06:28:58.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100117,
+   "Code": "HDMOCK-000117",
+   "PurchaseDate": "2026-10-15T05:15:05.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100118,
+   "Code": "HDMOCK-000118",
+   "PurchaseDate": "2026-10-15T09:15:23.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100119,
+   "Code": "OFFLINEMOCK-000119",
+   "PurchaseDate": "2026-10-15T11:26:47.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100120,
+   "Code": "HDMOCK-000120",
+   "PurchaseDate": "2026-10-15T09:48:03.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100121,
+   "Code": "HDMOCK-000121",
+   "PurchaseDate": "2026-10-16T03:43:32.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100122,
+   "Code": "HDMOCK-000122",
+   "PurchaseDate": "2026-10-16T06:24:25.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100123,
+   "Code": "HDMOCK-000123",
+   "PurchaseDate": "2026-10-15T23:30:02.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100124,
+   "Code": "HDMOCK-000124",
+   "PurchaseDate": "2026-10-15T23:30:25.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 115000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100125,
+   "Code": "HDMOCK-000125",
+   "PurchaseDate": "2026-10-16T02:14:09.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100126,
+   "Code": "OFFLINEMOCK-000126",
+   "PurchaseDate": "2026-10-16T01:35:49.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100127,
+   "Code": "HDMOCK-000127",
+   "PurchaseDate": "2026-10-16T00:41:45.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100128,
+   "Code": "HDMOCK-000128",
+   "PurchaseDate": "2026-10-16T12:44:48.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100129,
+   "Code": "HDMOCK-000129",
+   "PurchaseDate": "2026-10-17T05:24:16.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100130,
+   "Code": "HDMOCK-000130",
+   "PurchaseDate": "2026-10-17T13:17:20.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100131,
+   "Code": "HDMOCK-000131",
+   "PurchaseDate": "2026-10-17T06:01:26.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100132,
+   "Code": "HDMOCK-000132",
+   "PurchaseDate": "2026-10-17T05:31:56.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100133,
+   "Code": "OFFLINEMOCK-000133",
+   "PurchaseDate": "2026-10-17T06:42:27.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100134,
+   "Code": "HDMOCK-000134",
+   "PurchaseDate": "2026-10-17T09:45:26.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100135,
+   "Code": "HDMOCK-000135",
+   "PurchaseDate": "2026-10-17T08:47:54.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100136,
+   "Code": "HDMOCK-000136",
+   "PurchaseDate": "2026-10-17T05:19:49.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100137,
+   "Code": "HDMOCK-000137",
+   "PurchaseDate": "2026-10-18T06:16:48.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100138,
+   "Code": "HDMOCK-000138",
+   "PurchaseDate": "2026-10-18T04:57:14.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100139,
+   "Code": "HDMOCK-000139",
+   "PurchaseDate": "2026-10-18T03:59:25.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100140,
+   "Code": "OFFLINEMOCK-000140",
+   "PurchaseDate": "2026-10-18T12:03:45.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100141,
+   "Code": "HDMOCK-000141",
+   "PurchaseDate": "2026-10-18T09:46:07.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100142,
+   "Code": "HDMOCK-000142",
+   "PurchaseDate": "2026-10-18T04:41:59.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100143,
+   "Code": "HDMOCK-000143",
+   "PurchaseDate": "2026-10-18T11:53:23.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100144,
+   "Code": "HDMOCK-000144",
+   "PurchaseDate": "2026-10-17T23:30:17.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100145,
+   "Code": "HDMOCK-000145",
+   "PurchaseDate": "2026-10-19T05:24:22.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100146,
+   "Code": "HDMOCK-000146",
+   "PurchaseDate": "2026-10-19T00:45:30.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100147,
+   "Code": "OFFLINEMOCK-000147",
+   "PurchaseDate": "2026-10-19T05:20:23.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100148,
+   "Code": "HDMOCK-000148",
+   "PurchaseDate": "2026-10-19T06:51:40.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 115000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100149,
+   "Code": "HDMOCK-000149",
+   "PurchaseDate": "2026-10-19T00:29:04.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100150,
+   "Code": "HDMOCK-000150",
+   "PurchaseDate": "2026-10-19T01:57:38.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100151,
+   "Code": "HDMOCK-000151",
+   "PurchaseDate": "2026-10-19T00:16:47.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100152,
+   "Code": "HDMOCK-000152",
+   "PurchaseDate": "2026-10-18T23:46:48.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100153,
+   "Code": "HDMOCK-000153",
+   "PurchaseDate": "2026-10-20T02:30:45.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100154,
+   "Code": "OFFLINEMOCK-000154",
+   "PurchaseDate": "2026-10-20T14:08:59.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100155,
+   "Code": "HDMOCK-000155",
+   "PurchaseDate": "2026-10-20T03:38:15.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100156,
+   "Code": "HDMOCK-000156",
+   "PurchaseDate": "2026-10-20T01:32:12.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100157,
+   "Code": "HDMOCK-000157",
+   "PurchaseDate": "2026-10-20T01:41:02.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100158,
+   "Code": "HDMOCK-000158",
+   "PurchaseDate": "2026-10-20T02:04:16.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100159,
+   "Code": "HDMOCK-000159",
+   "PurchaseDate": "2026-10-20T12:31:45.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100160,
+   "Code": "HDMOCK-000160",
+   "PurchaseDate": "2026-10-20T12:29:39.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100161,
+   "Code": "OFFLINEMOCK-000161",
+   "PurchaseDate": "2026-10-21T08:18:17.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100162,
+   "Code": "HDMOCK-000162",
+   "PurchaseDate": "2026-10-21T07:12:28.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100163,
+   "Code": "HDMOCK-000163",
+   "PurchaseDate": "2026-10-21T03:18:56.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100164,
+   "Code": "HDMOCK-000164",
+   "PurchaseDate": "2026-10-21T11:16:15.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100165,
+   "Code": "HDMOCK-000165",
+   "PurchaseDate": "2026-10-21T13:02:06.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100166,
+   "Code": "HDMOCK-000166",
+   "PurchaseDate": "2026-10-21T10:02:56.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100167,
+   "Code": "HDMOCK-000167",
+   "PurchaseDate": "2026-10-21T05:38:52.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100168,
+   "Code": "OFFLINEMOCK-000168",
+   "PurchaseDate": "2026-10-21T04:28:38.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100169,
+   "Code": "HDMOCK-000169",
+   "PurchaseDate": "2026-10-22T05:02:23.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100170,
+   "Code": "HDMOCK-000170",
+   "PurchaseDate": "2026-10-22T07:02:38.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100171,
+   "Code": "HDMOCK-000171",
+   "PurchaseDate": "2026-10-22T12:43:23.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100172,
+   "Code": "HDMOCK-000172",
+   "PurchaseDate": "2026-10-22T00:50:31.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100173,
+   "Code": "HDMOCK-000173",
+   "PurchaseDate": "2026-10-22T02:50:25.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100174,
+   "Code": "HDMOCK-000174",
+   "PurchaseDate": "2026-10-22T04:25:44.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100175,
+   "Code": "OFFLINEMOCK-000175",
+   "PurchaseDate": "2026-10-22T12:03:19.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100176,
+   "Code": "HDMOCK-000176",
+   "PurchaseDate": "2026-10-21T23:55:49.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100177,
+   "Code": "HDMOCK-000177",
+   "PurchaseDate": "2026-10-23T11:46:25.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100178,
+   "Code": "HDMOCK-000178",
+   "PurchaseDate": "2026-10-23T12:07:52.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100179,
+   "Code": "HDMOCK-000179",
+   "PurchaseDate": "2026-10-23T13:49:10.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100180,
+   "Code": "HDMOCK-000180",
+   "PurchaseDate": "2026-10-23T11:05:36.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100181,
+   "Code": "HDMOCK-000181",
+   "PurchaseDate": "2026-10-23T03:22:18.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100182,
+   "Code": "OFFLINEMOCK-000182",
+   "PurchaseDate": "2026-10-23T11:31:48.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100183,
+   "Code": "HDMOCK-000183",
+   "PurchaseDate": "2026-10-23T00:58:30.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100184,
+   "Code": "HDMOCK-000184",
+   "PurchaseDate": "2026-10-23T01:57:45.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100185,
+   "Code": "HDMOCK-000185",
+   "PurchaseDate": "2026-10-24T11:39:54.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100186,
+   "Code": "HDMOCK-000186",
+   "PurchaseDate": "2026-10-24T00:25:33.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100187,
+   "Code": "HDMOCK-000187",
+   "PurchaseDate": "2026-10-24T03:15:46.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100188,
+   "Code": "HDMOCK-000188",
+   "PurchaseDate": "2026-10-24T09:07:24.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100189,
+   "Code": "OFFLINEMOCK-000189",
+   "PurchaseDate": "2026-10-24T12:19:37.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100190,
+   "Code": "HDMOCK-000190",
+   "PurchaseDate": "2026-10-24T13:32:28.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100191,
+   "Code": "HDMOCK-000191",
+   "PurchaseDate": "2026-10-24T13:15:28.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 115000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100192,
+   "Code": "HDMOCK-000192",
+   "PurchaseDate": "2026-10-24T11:06:04.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100193,
+   "Code": "HDMOCK-000193",
+   "PurchaseDate": "2026-10-25T01:51:28.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100194,
+   "Code": "HDMOCK-000194",
+   "PurchaseDate": "2026-10-25T01:59:46.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100195,
+   "Code": "HDMOCK-000195",
+   "PurchaseDate": "2026-10-25T03:01:54.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100196,
+   "Code": "OFFLINEMOCK-000196",
+   "PurchaseDate": "2026-10-25T14:18:51.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100197,
+   "Code": "HDMOCK-000197",
+   "PurchaseDate": "2026-10-25T01:53:22.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100198,
+   "Code": "HDMOCK-000198",
+   "PurchaseDate": "2026-10-25T07:57:52.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100199,
+   "Code": "HDMOCK-000199",
+   "PurchaseDate": "2026-10-25T05:37:16.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100200,
+   "Code": "HDMOCK-000200",
+   "PurchaseDate": "2026-10-25T00:12:11.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100201,
+   "Code": "HDMOCK-000201",
+   "PurchaseDate": "2026-10-26T09:57:24.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100202,
+   "Code": "HDMOCK-000202",
+   "PurchaseDate": "2026-10-26T10:55:28.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100203,
+   "Code": "OFFLINEMOCK-000203",
+   "PurchaseDate": "2026-10-26T10:16:24.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100204,
+   "Code": "HDMOCK-000204",
+   "PurchaseDate": "2026-10-26T01:28:14.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100205,
+   "Code": "HDMOCK-000205",
+   "PurchaseDate": "2026-10-26T08:40:55.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100206,
+   "Code": "HDMOCK-000206",
+   "PurchaseDate": "2026-10-26T00:14:09.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100207,
+   "Code": "HDMOCK-000207",
+   "PurchaseDate": "2026-10-26T00:08:31.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100208,
+   "Code": "HDMOCK-000208",
+   "PurchaseDate": "2026-10-25T23:36:22.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100209,
+   "Code": "HDMOCK-000209",
+   "PurchaseDate": "2026-10-27T06:26:37.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100210,
+   "Code": "OFFLINEMOCK-000210",
+   "PurchaseDate": "2026-10-27T14:10:08.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100211,
+   "Code": "HDMOCK-000211",
+   "PurchaseDate": "2026-10-27T13:06:04.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100212,
+   "Code": "HDMOCK-000212",
+   "PurchaseDate": "2026-10-27T11:51:16.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100213,
+   "Code": "HDMOCK-000213",
+   "PurchaseDate": "2026-10-27T13:38:59.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100214,
+   "Code": "HDMOCK-000214",
+   "PurchaseDate": "2026-10-26T23:30:03.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100215,
+   "Code": "HDMOCK-000215",
+   "PurchaseDate": "2026-10-27T06:10:03.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100216,
+   "Code": "HDMOCK-000216",
+   "PurchaseDate": "2026-10-27T03:26:12.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 55000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100217,
+   "Code": "OFFLINEMOCK-000217",
+   "PurchaseDate": "2026-10-28T08:04:19.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100218,
+   "Code": "HDMOCK-000218",
+   "PurchaseDate": "2026-10-27T23:30:54.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100219,
+   "Code": "HDMOCK-000219",
+   "PurchaseDate": "2026-10-28T04:14:06.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100220,
+   "Code": "HDMOCK-000220",
+   "PurchaseDate": "2026-10-28T02:21:57.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100221,
+   "Code": "HDMOCK-000221",
+   "PurchaseDate": "2026-10-28T07:40:35.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 85000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100222,
+   "Code": "HDMOCK-000222",
+   "PurchaseDate": "2026-10-28T08:41:59.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100223,
+   "Code": "HDMOCK-000223",
+   "PurchaseDate": "2026-10-28T04:16:57.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100224,
+   "Code": "OFFLINEMOCK-000224",
+   "PurchaseDate": "2026-10-28T05:56:24.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100225,
+   "Code": "HDMOCK-000225",
+   "PurchaseDate": "2026-10-29T14:53:33.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100226,
+   "Code": "HDMOCK-000226",
+   "PurchaseDate": "2026-10-29T06:36:56.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100227,
+   "Code": "HDMOCK-000227",
+   "PurchaseDate": "2026-10-29T04:09:02.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100228,
+   "Code": "HDMOCK-000228",
+   "PurchaseDate": "2026-10-29T10:09:44.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100229,
+   "Code": "HDMOCK-000229",
+   "PurchaseDate": "2026-10-29T00:44:04.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100230,
+   "Code": "HDMOCK-000230",
+   "PurchaseDate": "2026-10-29T05:52:52.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100231,
+   "Code": "OFFLINEMOCK-000231",
+   "PurchaseDate": "2026-10-29T02:15:13.3400000Z",
+   "Status": 2,
+   "Total": 30000.0,
+   "TotalPayment": 30000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100232,
+   "Code": "HDMOCK-000232",
+   "PurchaseDate": "2026-10-29T01:52:48.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100233,
+   "Code": "HDMOCK-000233",
+   "PurchaseDate": "2026-10-30T03:06:50.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100234,
+   "Code": "HDMOCK-000234",
+   "PurchaseDate": "2026-10-30T09:27:16.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100235,
+   "Code": "HDMOCK-000235",
+   "PurchaseDate": "2026-10-30T00:45:48.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100236,
+   "Code": "HDMOCK-000236",
+   "PurchaseDate": "2026-10-30T08:39:47.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 20000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100237,
+   "Code": "HDMOCK-000237",
+   "PurchaseDate": "2026-10-30T02:22:30.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100238,
+   "Code": "OFFLINEMOCK-000238",
+   "PurchaseDate": "2026-10-30T01:36:52.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100239,
+   "Code": "HDMOCK-000239",
+   "PurchaseDate": "2026-10-30T05:18:48.3400000Z",
+   "Status": 2,
+   "Total": 120000.0,
+   "TotalPayment": 120000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100240,
+   "Code": "HDMOCK-000240",
+   "PurchaseDate": "2026-10-30T14:06:31.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100241,
+   "Code": "HDMOCK-000241",
+   "PurchaseDate": "2026-10-31T07:36:10.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100242,
+   "Code": "HDMOCK-000242",
+   "PurchaseDate": "2026-10-31T14:10:07.3400000Z",
+   "Status": 2,
+   "Total": 90000.0,
+   "TotalPayment": 90000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100243,
+   "Code": "HDMOCK-000243",
+   "PurchaseDate": "2026-10-31T09:22:06.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 40000.0,
+   "Discount": 5000.0
+  },
+  {
+   "Id": 100244,
+   "Code": "HDMOCK-000244",
+   "PurchaseDate": "2026-10-31T12:56:41.3400000Z",
+   "Status": 2,
+   "Total": 25000.0,
+   "TotalPayment": 25000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100245,
+   "Code": "OFFLINEMOCK-000245",
+   "PurchaseDate": "2026-10-31T07:27:57.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100246,
+   "Code": "HDMOCK-000246",
+   "PurchaseDate": "2026-10-31T13:08:34.3400000Z",
+   "Status": 2,
+   "Total": 60000.0,
+   "TotalPayment": 60000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100247,
+   "Code": "HDMOCK-000247",
+   "PurchaseDate": "2026-10-31T03:55:53.3400000Z",
+   "Status": 2,
+   "Total": 45000.0,
+   "TotalPayment": 45000.0,
+   "Discount": 0.0
+  },
+  {
+   "Id": 100248,
+   "Code": "HDMOCK-000248",
+   "PurchaseDate": "2026-10-31T13:44:49.3400000Z",
+   "Status": 2,
+   "Total": 35000.0,
+   "TotalPayment": 35000.0,
+   "Discount": 0.0
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+  "probed_at": "2026-11-13T10:15:30Z",
+  "endpoint": "/api/orders?format=json",
+  "auth_mode": "credentials (sanitized)",
+  "total_records_detected": 15829,
+  "order_sorting": "newest_first",
+  "sample_order_structure": {
+    "Id": 1582901,
+    "Code": "HD015829",
+    "PurchaseDate": "2026-11-13T08:45:00.0000000Z",
+    "Status": 2,
+    "Total": 75000.0,
+    "TotalPayment": 75000.0,
+    "Discount": 0.0,
+    "NumberOfGuests": 2,
+    "Pos": "Bàn 04",
+    "RoomId": 1
+  },
+  "verified_findings": [
+    "API returns orders in descending order (newest to oldest).",
+    "Sync must terminate early upon encountering orders older than cutoff date (POS365_SYNC_FROM_DATE).",
+    "Paging must cap at POS365_SYNC_MAX_PAGES to prevent network starvation and worker timeouts.",
+    "Per-request timeout (POS365_REQUEST_TIMEOUT) enforces non-blocking behavior.",
+    "Field mapping verified: Code -> doc_code, PurchaseDate -> created_at, TotalPayment -> paid, Total -> total, Discount -> discount, Pos/RoomId -> table_name, NumberOfGuests -> guests."
+  ],
+  "security_note": "No credentials, tokens, cookies, or secrets are retained in this artifact."
+}
