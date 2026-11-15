@@ -103,7 +103,7 @@ function OwnerHandover() {
       <Card title="Danh sách biên bản giao ca ▾" collapsible defaultOpen={true}>
         {list.loading && !list.data ? <Loading /> : list.error ? <ErrorBox message={list.error} onRetry={list.reload} /> :
           filtered.length === 0 ? <Empty title="Không tìm thấy biên bản giao ca nào" /> : (
-            <Table head={['Ngày', 'Ca', 'Người giao', 'Người nhận', { label: 'Hệ thống (POS)', num: 1 }, { label: 'Chuyển khoản', num: 1 }, { label: 'Thực tế giao', num: 1 }, 'Trạng thái', '']}>
+            <Table head={['Ngày', 'Ca', 'Người giao', 'Người nhận', { label: 'POS NV nhập', num: 1 }, { label: 'Chuyển khoản', num: 1 }, { label: 'Thực tế giao', num: 1 }, 'Trạng thái', '']}>
               {filtered.map(h => {
                 const [badgeKind, badgeText] = STATUS[h.status] || ['', h.status]
                 const isOver10 = h.pos_revenue_ref > 0 && Math.abs(h.pos_revenue_entered - h.pos_revenue_ref) > 0.10 * h.pos_revenue_ref
@@ -130,6 +130,9 @@ function OwnerHandover() {
                         {money(h.pos_revenue_entered)}
                       </span>
                       {isOver10 && <span title="Lệch quá 10% so với POS tham chiếu" style={{ marginLeft: 4 }}>⚠️</span>}
+                      {isOver10 && h.pos_revenue_ref != null && (
+                        <div className="muted small">POS tham chiếu: {money(h.pos_revenue_ref)}</div>
+                      )}
                     </td>
                     <td className="num">{money(h.transfer_total)}</td>
                     <td className="num"><b>{money(h.cash_handed)}</b></td>
@@ -162,10 +165,10 @@ function OwnerHandover() {
 
             <div className="grid3">
               <div className="card flat tight">
-                <span className="lbl">Doanh thu hệ thống (POS)</span>
+                <span className="lbl">Doanh thu POS (NV nhập)</span>
                 <div style={{ fontSize: '1.2rem', fontWeight: 700 }}>{money(selectedTicket.pos_revenue_entered)}</div>
                 {selectedTicket.pos_revenue_ref !== null && (
-                  <span className="muted small">POS đối chiếu: {money(selectedTicket.pos_revenue_ref)}</span>
+                  <span className="muted small">POS tham chiếu: {money(selectedTicket.pos_revenue_ref)}</span>
                 )}
               </div>
               <div className="card flat tight">
