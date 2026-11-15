@@ -1,95 +1,72 @@
-# Chức năng MỞ RỘNG (tách khỏi lõi)
+# Đặc tả các chức năng mở rộng (Extension Features)
 
-Cập nhật theo quyết định của nhóm ngày 11/11/2026.
+Tài liệu này mô tả nhóm chức năng mở rộng được phát triển bổ sung ngoài 6 yêu cầu cốt lõi đã được Chủ quán xác nhận (R01, R03, R04, R06, R07, R09). Mỗi chức năng mở rộng đều có cờ cấu hình riêng để kiểm soát phạm vi, ngoại trừ E-01 và E-02 là tầng bảo mật bắt buộc phải kích hoạt khi chạy ở chế độ dữ liệu thật (`APP_MODE=live`).
 
-Nguyên tắc: mục dưới đây mang nhãn **MỞ RỘNG**, nằm ngoài 6 yêu cầu chủ quán đã xác nhận (R01, R03, R04, R06, R07, R09). Mỗi mục có cờ cấu hình riêng; tắt thì không có menu, route, bảng phát sinh. Ngoại lệ đã chốt: **E-01 và E-02 bắt buộc, không tắt được khi `APP_MODE=live`** (D17) vì R06 Đường 2 cần định danh người dùng và dữ liệu Live là dữ liệu thật. Ở Demo, hai mục này vẫn có cờ để kiểm thử.
-
-Mức ưu tiên do nhóm đề xuất, chưa được chủ quán xác nhận.
-
-| Mã | Chức năng | Ưu tiên | Quyết định | Căn cứ |
+| Mã số | Tên chức năng mở rộng | Mức ưu tiên | Quyết định triển khai | Căn cứ khảo sát |
 |---|---|---|---|---|
-| E-01 | Phân quyền theo vai trò | High | Giữ, bắt buộc ở Live | gián tiếp + CĐ-GV |
-| E-02 | Phiên đăng nhập và bảo mật tài khoản | High | Giữ, bắt buộc ở Live | gián tiếp |
-| E-03 | Nhật ký thao tác | Medium | Giữ | gián tiếp |
-| E-04 | Gắn bản ghi vào ca và người nhập | Medium | Giữ | gián tiếp |
-| E-05 | Xuất báo cáo Excel/CSV/PDF | Medium | Giữ | gián tiếp |
-| E-09 | Chấm công QR (chỉ log đối chiếu) | Low | Giữ, nâng cấp | VG06 (tùy chọn) |
-| E-11 | Cô lập môi trường Demo/Live | High | Giữ | gián tiếp |
-| E-13 | Gợi ý xếp lịch nháp | Medium | **Mới** (xem D24) | gián tiếp (NC-01 C1, C2) |
-| E-06, E-07, E-08, E-10, E-12 | cảnh báo chênh lệch / giá nhập / tồn kho ước tính / doanh thu thấp / đẩy tức thời | — | **Loại** | xem mục cuối |
+| E-01 | Phân quyền truy cập theo vai trò | Cao | Triển khai và bắt buộc ở bản Live | Căn cứ gián tiếp và chỉ đạo của Giảng viên (CĐ-GV) |
+| E-02 | Quản lý phiên đăng nhập và bảo mật tài khoản | Cao | Triển khai và bắt buộc ở bản Live | Căn cứ bảo mật dữ liệu tài chính thực tế |
+| E-03 | Nhật ký kiểm toán thao tác hệ thống | Trung bình | Triển khai | NC-02 C2, CQ05 |
+| E-04 | Gắn bản ghi với ca làm việc, người nhập và cờ ngoài lịch | Trung bình | Triển khai | NC-02 C4, NC-03 C2 |
+| E-05 | Xuất báo cáo ra tệp Excel, CSV và bản in PDF | Trung bình | Triển khai | CQ06, NC-01 C5 |
+| E-09 | Xác thực vào/ra ca tại máy quầy bằng mã QR động và PIN | Thấp | Triển khai nâng cấp | VG06 |
+| E-11 | Cô lập môi trường chạy thử (Demo) và chạy thật (Live) | Cao | Triển khai | Cam kết bảo mật dữ liệu tại QS02 |
+| E-13 | Gợi ý xếp lịch phân ca nháp tự động | Trung bình | Triển khai mới | NC-01 C1, C2 |
+| E-06, E-07, E-08, E-10, E-12 | Các cảnh báo tự động ngoài phạm vi khảo sát | Không áp dụng | Đã loại bỏ khỏi hệ thống | Xem chi tiết tại bảng cuối tài liệu |
 
 ---
 
-## E-01. Phân quyền theo vai trò
-- **Giải quyết:** Mỗi người chỉ thấy và làm đúng việc. Ẩn menu **và** chặn API ở server (dependency kiểm tra vai trò và trạng thái đứng ca).
-- **Vai trò đang hoạt động (đã chốt 11/11):**
-  - **Chủ quán:** toàn quyền; duyệt lịch rảnh, đổi ca, phụ giữa ca; xem lãi/lỗ; quản lý tài khoản; cấu hình ca và hệ số lương.
-  - **Nhân viên:** xem thời khóa biểu chỉ đọc; khai báo lịch rảnh; gửi yêu cầu đổi ca / phụ giữa ca; xem lương của mình; và khi **đang đứng ca**: giao ca (R03), nhập hàng (R04), báo nguyên liệu (R09). Truy cập qua IP LAN trên điện thoại.
-  - **Quản lý ca** và **Kế toán/Xem:** chỉ giữ chỗ trong mô hình (`users.role`), chưa xây, chờ nâng cấp theo quy mô quán.
-- **"Ngoài lịch phân công" (D23, chốt 12/11):** nhân viên thao tác giao ca/nhập hàng/báo nguyên liệu vào ngày không có tên trong lịch vẫn **được lưu**, bản ghi gắn cờ "Ngoài lịch phân công" cho chủ quán xem (phục vụ E-04), không trả 403. Lý do: có ngày đổi ca miệng chưa kịp duyệt trên web, và Demo cần cho giảng viên thử ở ngày bất kỳ. Chủ quán bật/tắt chế độ chặn cứng ở Cài đặt (`duty_require_schedule`, mặc định **tắt** ở cả Demo và Live).
-- **Căn cứ gián tiếp:** POS365 hiện đã có tài khoản chủ quán riêng để theo dõi, nhân viên thao tác trên máy (NC-01 C5); lương hiện gửi riêng qua Zalo cá nhân (NC-01 C2); CĐ-GV cần định danh người dùng.
-- **Rủi ro:** Không chặn nên nhân viên có thể thao tác ngoài lịch; giảm rủi ro bằng cờ cảnh báo và nhật ký (E-03). Thêm thao tác lúc đông khách (bài học VG02).
+## E-01. Phân quyền truy cập theo vai trò (Role-Based Access Control)
+- **Mục tiêu giải quyết:** Đảm bảo mỗi nhân sự tại quán chỉ nhìn thấy và thao tác đúng chức năng thuộc trách nhiệm của mình. Hệ thống thực hiện ẩn các mục điều hướng trên giao diện đồng thời kiểm tra chặt chẽ quyền hạn tại tầng API phía máy chủ.
+- **Hai vai trò vận hành thực tế:**
+  - **Chủ quán (`owner`):** Có toàn quyền quản trị, bao gồm xem tổng quan tài chính, đồng bộ doanh thu POS, duyệt lịch rảnh, xếp và công bố lịch ca, duyệt đổi ca, chốt bảng lương, xem báo cáo Lãi/Lỗ, quản lý tài khoản, cấp mã PIN và cấu hình máy quầy.
+  - **Nhân viên (`staff`):** Xem lịch phân ca đã công bố, đăng ký lịch rảnh, gửi yêu cầu đổi ca hoặc nhờ phụ giữa ca, xem bảng lương cá nhân, thực hiện điểm danh vào/ra ca và thực hiện 3 nghiệp vụ vận hành tại quầy gồm lập biên bản giao ca (R03), ghi nhận phiếu nhập hàng (R04) và báo cáo tình trạng nguyên liệu (R09).
+- **Cơ chế xử lý thao tác ngoài lịch phân công (D23):** Khi nhân viên thực hiện giao ca, nhập hàng hoặc báo nguyên liệu vào ngày không có tên mình trong lịch phân công chính thức (ví dụ đi làm thay đột xuất chưa kịp cập nhật lịch), hệ thống mặc định vẫn cho phép lưu bản ghi và tự động gắn nhãn cảnh báo "Ngoài lịch phân công" để Chủ quán hậu kiểm. Nếu muốn siết chặt, Chủ quán có thể bật tùy chọn "Chặn nhân viên thao tác ngoài lịch phân công" (`duty_require_schedule`) trong trang Cài đặt.
 
-## E-02. Phiên đăng nhập và bảo mật tài khoản
-- **Giải quyết:** First-run Setup tạo chủ quán khi `OWNER_USERNAME` để trống; phiên hết hạn theo `SESSION_HOURS=12`; đăng xuất; đổi mật khẩu; khóa tài khoản sau nhiều lần sai; mật khẩu băm bcrypt/argon2.
-- **Căn cứ gián tiếp:** Dữ liệu Live là dữ liệu thật (lương, doanh thu); POS365 cũng dùng phiên `SessionId` có hạn (API §1). **Chưa có căn cứ nghiệp vụ trực tiếp** trong phỏng vấn/quan sát.
-- **Rủi ro:** Quên mật khẩu chủ quán (POS từng không nhận mật khẩu đúng, NC-01 C11) cần quy trình khôi phục; chưa có căn cứ về cách làm (D22). Ngưỡng khóa tài khoản đặt cấu hình được.
+## E-02. Quản lý phiên đăng nhập và bảo mật tài khoản
+- **Mục tiêu giải quyết:** Bảo vệ dữ liệu doanh thu, tiền lương và chi phí của quán thông qua cơ chế thiết lập tài khoản Chủ quán lần đầu (First-run Setup), quản lý thời hạn phiên đăng nhập (`SESSION_HOURS=12`), bắt buộc độ mạnh mật khẩu, băm mật khẩu bằng thuật toán Bcrypt và tự động khóa tạm thời tài khoản khi đăng nhập sai liên tiếp nhiều lần.
+- **Tiện ích cho môi trường trình diễn (Demo):** Ở chế độ `APP_MODE=demo`, màn hình đăng nhập cung cấp thêm các nút chuyển đổi tài khoản nhanh giữa Chủ quán và các Nhân viên để phục vụ việc kiểm thử và trình diễn trước hội đồng (tính năng này tự động bị vô hiệu hóa ở chế độ `live`).
 
-## E-03. Nhật ký thao tác (audit log)
-- **Giải quyết:** Ai sửa/xóa/nhập/duyệt đổi ca gì, lúc nào, giá trị cũ → mới; chủ quán xem được.
-- **Căn cứ gián tiếp:** POS365 lưu dấu vết xóa món (NC-02 C2); chủ quán hiện hỏi lại nhân viên các ca đổi để kiểm soát lương (CQ05).
-- **Rủi ro:** Nhật ký chứa số liệu lương/tiền nên chỉ chủ quán đọc; dung lượng tăng.
+## E-03. Nhật ký kiểm toán thao tác (Audit Log)
+- **Mục tiêu giải quyết:** Ghi nhận đầy đủ lịch sử ai đã thực hiện thao tác thêm, sửa, xóa, duyệt hoặc khóa dữ liệu nào, vào thời điểm nào, kèm theo bảng so sánh trực quan giữa giá trị cũ và giá trị mới.
+- **Phạm vi truy cập:** Chỉ tài khoản Chủ quán mới có quyền truy cập trang Nhật ký thao tác để phục vụ việc đối soát khi có sai lệch số liệu.
 
-## E-04. Gắn bản ghi vào ca và người nhập
-- **Giải quyết:** Biên bản giao ca đã có ca và người; mục này mở rộng sang phiếu nhập, báo nguyên liệu, chi phí để truy vết.
-- **Căn cứ gián tiếp:** Chênh lệch hiện do ca sau phát hiện rồi báo lại ca trước (NC-02 C4); nhân viên đứng ca chịu trách nhiệm khi nhận hàng (NC-03 C2).
-- **Rủi ro:** POS không có khái niệm ca (D05) nên "ca" lấy từ lịch ca; có thể gán sai khi đổi ca chưa duyệt.
+## E-04. Gắn bản ghi vào ca làm việc và người thực hiện
+- **Mục tiêu giải quyết:** Mở rộng khả năng truy vết từ biên bản giao ca sang cả phiếu nhập hàng, báo cáo nguyên liệu và sổ chi phí. Mọi bản ghi phát sinh đều lưu định danh người tạo, thời điểm tạo và trạng thái đối chiếu với lịch phân ca trong ngày.
 
-## E-05. Xuất báo cáo Excel/CSV/PDF
-- **Giải quyết:** Xuất lãi/lỗ, lịch ca, doanh thu.
-- **Căn cứ gián tiếp:** Chủ quán thấy file Excel hiện dùng tiện hơn file xuất của POS (CQ06); quán quen in giấy (NC-01 C5).
-- **Rủi ro:** File xuất chứa lương và lãi/lỗ thật; thư mục xuất nằm ngoài repo và trong `.gitignore`.
+## E-05. Xuất báo cáo ra tệp Excel, CSV và bản in PDF
+- **Mục tiêu giải quyết:** Cho phép Chủ quán tải trực tiếp Báo cáo Lãi/Lỗ tháng, Bảng lương và dữ liệu doanh thu ra tệp `.xlsx`, `.csv` hoặc in trực tiếp ra định dạng PDF chuẩn khổ giấy A4 để lưu trữ độc lập ngoài hệ thống.
 
-## E-09. Chấm công QR (chỉ lưu log đối chiếu)
-- **Giải quyết:** Tạo và quét QR để ghi giờ Vào/Ra, dùng đối chiếu khi cần. **Ràng buộc đã thống nhất:** lương vẫn tính chẵn theo lịch ca đã duyệt (F06-G), log chấm công **không** đi vào công thức lương, để không phá quy chế hiện tại của quán.
-- **Thiết kế:**
-  - Trang `/attendance/qr` (chủ quán mở trên máy ở quán) hiển thị QR chứa URL `http://<IP_LAN>:<cổng>/attendance/scan?t=<token>`; token ký HMAC theo cửa sổ thời gian ngắn và tự làm mới.
-  - Nhân viên quét bằng **ứng dụng camera có sẵn của điện thoại** (không dùng camera trong trình duyệt, vì trình duyệt chỉ cho mở camera trên HTTPS, còn LAN nội bộ dùng HTTP). Trang mở ra yêu cầu đăng nhập, kiểm tra token còn hạn, rồi ghi Vào hoặc Ra xen kẽ.
-  - Chỉ nhân viên có phân công trong ngày mới ghi được.
-- **Căn cứ:** Chủ quán nói "nếu được thì có chấm công tốt hơn nữa" (VG06); R06 xếp ở mức Low; hiện quán không ghi giờ (QT3a-B1 G1, C.3a.2).
-- **Rủi ro:** Quét hộ (nhờ người khác quét) chỉ giảm được nhờ token ngắn hạn và việc URL chỉ truy cập được trong LAN; chưa có quy tắc đi trễ/về sớm (NC-01 C2) nên log chỉ để xem, không tính tiền; thêm thao tác cho nhân viên.
+## E-09. Xác thực vào/ra ca tại máy quầy bằng mã QR động và mã PIN dự phòng
+- **Mục tiêu giải quyết:** Giải quyết bài toán chấm công đối chiếu thời gian làm việc thực tế và tự động cấp phiên làm việc cho nhân viên trên máy tính dùng chung tại quầy thu ngân mà không cần chia sẻ mật khẩu của Chủ quán.
+- **Thiết kế vận hành:**
+  - Màn hình Máy quầy (`/kiosk`) hiển thị mã QR động có hiệu lực trong 2 phút và chỉ sử dụng được một lần duy nhất.
+  - Nhân viên dùng điện thoại cá nhân quét mã QR để xác nhận Vào ca hoặc Ra ca. Ngay sau khi xác nhận, hệ thống ghi nhận thời gian vào bảng `attendance_logs` và tự động mở phiên làm việc của nhân viên đó trên màn hình máy quầy.
+  - Hỗ trợ nhập mã PIN cá nhân (4 đến 6 chữ số) ngay tại màn hình máy quầy làm phương án dự phòng khi điện thoại nhân viên hết pin hoặc mất kết nối mạng. Khi nhân viên mở `/kiosk` từ tài khoản đã đăng nhập sẵn, hệ thống khóa cố định tên của chính nhân viên đó.
+  - Kiểm soát mở phiên làm việc (`has_active_shift`): Nhân viên bắt buộc phải Vào ca bằng QR hoặc PIN mới được thực hiện Ra ca (chặn lỗi HTTP 400 nếu chưa Vào ca) và mới được lập Phiếu giao ca, Nhập hàng hoặc Báo nguyên liệu (nếu chưa mở phiên thì chỉ xem ở chế độ tra cứu và bị chặn HTTP 403).
+  - Kiểm tra khung giờ ca (biên độ sớm 60 phút và trễ 60 phút so với giờ ca được phân công), tự động gắn nhãn cảnh báo "Ngoài khung giờ / lịch ca" nếu quét sai khung giờ hoặc ngoài lịch.
+  - Tự động đóng phiên làm việc của ca trước nếu nhân viên ca trước quên bấm kết thúc ca khi người ca sau vào nhận ca.
+- **Ràng buộc nghiệp vụ:** Dữ liệu chấm công chỉ dùng để Chủ quán theo dõi và đối soát giờ giấc thực tế, hoàn toàn không làm thay đổi công thức tính lương theo ca đã duyệt của quán.
 
-## E-11. Cô lập môi trường Demo/Live
-- **Giải quyết:** Demo (`APP_MODE=demo`, `.env`, `t06_pos_db`, cổng 3000/8000/5432) dùng dữ liệu giả để kiểm thử và làm phương án dự phòng offline khi bảo vệ; Live (`APP_MODE=live`, `.env.live`, `t06_live_db`, cổng 3001/8001/5433, project Compose `t06-live`) kết nối dữ liệu thật, có nhãn "DỮ LIỆU THẬT".
-- **Căn cứ gián tiếp:** Cam kết của nhóm ở QS02 (không commit dữ liệu thật, không đưa vào công cụ AI); quy tắc quan sát về ảnh/ghi chép chưa che.
-- **Rủi ro:** Cổng 5432 xung đột với PostgreSQL cài sẵn trên Windows (xử lý ghi trong README). Nhầm môi trường: nhãn nổi bật giảm rủi ro.
+## E-11. Cô lập môi trường Demo và Live
+- **Mục tiêu giải quyết:** Đảm bảo an toàn tuyệt đối cho dữ liệu thực tế của quán và tuân thủ cam kết bảo mật thông tin khảo sát (QS02). Môi trường Demo và môi trường Live sử dụng hai tệp cấu hình riêng, hai cơ sở dữ liệu PostgreSQL tách biệt và chạy trên hai cụm cổng mạng độc lập.
 
-## E-13. Gợi ý xếp lịch nháp (mới)
-- **Giải quyết:** Sinh sẵn bản nháp lịch tháng để chủ quán đỡ xếp tay; chủ quán xem, kéo thả chỉnh các ô trống (Unassigned), rồi bấm "Công bố" (F06-D) để chốt vào CSDL. Không công bố thì nhân viên không thấy.
-- **Vì sao nằm ở MỞ RỘNG:** "Xếp ca tự động" **không được đưa thành requirement** (Phụ lục B mục 2; chỉ nghe kể ở NC-01 C1), và CĐ-GV chỉ nói khai báo lịch rảnh, xem thời khóa biểu, đổi ca, duyệt. Thuật toán là đề xuất của nhóm. Lõi (F06-D) vẫn dùng được khi không có E-13.
-- **Ba quy tắc (đề xuất của nhóm, 11/11):**
-  1. **Khớp lịch rảnh (ràng buộc cứng):** chỉ xếp người có `available = true` tại (ngày, ca). Không khai báo = không rảnh. Người đánh dấu bận bị bỏ qua.
-  2. **Công bằng:** ưu tiên ứng viên có tổng số ca đã xếp trong tháng ít nhất, tính đến thời điểm xử lý ô đó (xử lý theo thứ tự ngày, rồi sáng → trưa → tối).
-  3. **Cụm ca liền kề:** nếu người vừa làm ca liền trước trong cùng ngày (sáng → trưa, trưa → tối) và vẫn rảnh ca này, tăng ưu tiên để xếp tiếp cho người đó.
-- **Tham số tôi đề xuất để quy tắc 3 không phá quy tắc 2 (cần xác nhận, D24):**
-  - `cluster_fairness_slack` (mặc định 1): quy tắc 3 chỉ thắng khi số ca của người đó không vượt mức thấp nhất quá ngưỡng này.
-  - `max_shifts_per_day` (mặc định 2): tránh một người làm cả 3 ca (5,5 + 5,5 + 4,0 = 15 giờ).
-  - Hòa nhau: chọn theo mã nhân viên nhỏ hơn, để chạy lại cho kết quả giống nhau.
-- **Căn cứ gián tiếp:** Chủ quán hiện tổng hợp lịch rảnh và chia ca (NC-01 C1, C2). Quy tắc 1 và 2 bám việc chia lịch đồng đều đó. **Quy tắc 3 chưa có căn cứ** trong tài liệu.
-- **Rủi ro:** Ca ít người rảnh để trống nhiều; ca tối cuối tháng khó đều; sức chứa ca mặc định 1 người (NC-01 C2) có thể đổi.
+## E-13. Gợi ý xếp lịch phân ca nháp tự động
+- **Mục tiêu giải quyết:** Hỗ trợ Chủ quán tạo nhanh bản nháp lịch phân ca cho cả tháng dựa trên đăng ký lịch rảnh của nhân viên, giảm thời gian xếp lịch thủ công từ bảng tính.
+- **Ba quy tắc thuật toán áp dụng:**
+  1. **Tuân thủ lịch rảnh (ràng buộc cứng):** Chỉ phân công nhân viên vào những ca mà nhân viên đó đã đánh dấu có thể làm việc (`available = True`).
+  2. **Cân bằng số lượng ca làm việc:** Ưu tiên phân công cho ứng viên đang có tổng số ca được xếp trong tháng ít nhất tính đến thời điểm xét.
+  3. **Ưu tiên cụm ca liền kề hợp lý:** Ưu tiên xếp tiếp cho nhân viên vừa làm ca liền trước trong cùng ngày nếu độ lệch số ca nằm trong ngưỡng cho phép (`cluster_fairness_slack = 1`) và không vượt quá số ca tối đa mỗi ngày của một nhân viên (`max_shifts_per_day = 2`).
+- **Quyền quyết định cuối cùng:** Kết quả của E-13 chỉ là bản nháp. Chủ quán toàn quyền chỉnh sửa lại từng ô trước khi bấm nút "Công bố lịch" cho nhân viên.
 
 ---
 
-## Đã loại theo quyết định 11/11/2026 (không xây, không có route/bảng)
+## Danh mục các mục mở rộng đã thống nhất loại bỏ (ngày 11/11/2026)
 
-| Mã | Chức năng | Ghi chú giữ lại để truy vết |
+| Mã số | Tên mục đã loại bỏ | Lý do loại bỏ để giữ gọn phạm vi hệ thống |
 |---|---|---|
-| E-06 | Cảnh báo chênh lệch giao ca vượt ngưỡng | Liên quan D01 (không tự tính tiền két) |
-| E-07 | Cảnh báo giá nhập tăng | Giá nhập gần nhất vẫn hiển thị ở R09 (lấy từ R04) |
-| E-08 | Tồn kho ước tính | Hướng phát triển sau; mô hình định lượng dễ sai và hao hụt (VG05) |
-| E-10 | Cảnh báo doanh thu ngày thấp | Chưa có căn cứ (NC-01 C8) |
-| E-12 | Đẩy tức thời khi duyệt đổi ca | Lõi cập nhật CSDL ngay khi duyệt; giao diện làm mới định kỳ (D14) |
-
-## Thuộc lõi, không phải MỞ RỘNG
-
-F06-C, F06-D, F06-E, F06-F (R06 Đường 2, căn cứ CĐ-GV; đưa vào lõi ngày 11/11/2026, D04). Gồm cả loại yêu cầu "Nhờ làm phụ giữa ca / Vắng nửa ca".
+| E-06 | Cảnh báo tự động công thức tiền két | Tránh xung đột với quyết định D01 và xác nhận VG02 của Chủ quán về việc không tự tính công thức tiền két cố định. |
+| E-07 | Cảnh báo biến động giá nhập nguyên liệu | Đã hiển thị trực tiếp giá nhập gần nhất trên bảng danh mục nguyên liệu (R09) để Chủ quán theo dõi trực quan. |
+| E-08 | Ước tính số lượng tồn kho tự động | Chủ quán đã bác bỏ tại VG05 do định lượng pha chế thực tế có sự gia giảm theo yêu cầu khách hàng. |
+| E-10 | Cảnh báo doanh thu ngày thấp bất thường | Không có tiêu chí định lượng trong tài liệu khảo sát thực tế tại quán (NC-01 C8). |
+| E-12 | Thông báo đẩy thời gian thực qua WebSocket | Đã được thay thế bằng cơ chế cập nhật cơ sở dữ liệu tức thì kết hợp biểu tượng Chuông thông báo hoạt động trên thanh đầu trang. |

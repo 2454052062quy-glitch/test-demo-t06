@@ -8,6 +8,8 @@ const newItem = () => ({ ingredient_name: '', quantity: '', unit: '', unit_price
 const lineTotal = it => Math.round((Number(it.quantity) || 0) * (Number(it.unit_price) || 0))
 
 function PurchaseFormInline({ ingredients, suppliers, onSaved }) {
+  const { me } = useApp()
+  const noActiveShift = me?.role === 'staff' && !me?.has_active_shift
   const toast = useToast()
   const photo = useRef()
   const maxDate = todayIso()
@@ -61,6 +63,14 @@ function PurchaseFormInline({ ingredients, suppliers, onSaved }) {
   return (
     <Card title="Ghi nhận phiếu nhập hàng" subtitle="Nhân viên nhận hàng thực tế và ghi ngay vào ca">
       <div className="stack">
+        {noActiveShift && (
+          <Notice kind="warn">
+            <div className="row spread" style={{ width: '100%', gap: 8, flexWrap: 'wrap' }}>
+              <span>⚠️ Bạn đang xem ở chế độ tra cứu (chưa mở phiên ca làm). Vui lòng bấm <b>[Vào ca bằng QR/PIN]</b> để mở phiên làm việc trước khi tạo phiếu giao ca hoặc nhập hàng.</span>
+              <Btn size="sm" kind="primary" onClick={() => { window.location.href = '/kiosk' }}>🟢 Vào ca bằng QR/PIN</Btn>
+            </div>
+          </Notice>
+        )}
         <div className="grid2">
           <Field label="Ngày nhập">
             <input
@@ -103,7 +113,7 @@ function PurchaseFormInline({ ingredients, suppliers, onSaved }) {
         <Field label="Ảnh hóa đơn / biên lai nhận hàng" hint="JPG, PNG hoặc WEBP, tối đa 8 MB">
           <input ref={photo} className="input" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={e => setFiles([...e.target.files])} />
         </Field>
-        <Btn kind="primary" busy={busy} disabled={!valid} onClick={save} style={{ width: '100%', padding: '12px' }}>Lưu phiếu nhập</Btn>
+        <Btn kind="primary" busy={busy} disabled={!valid || noActiveShift} onClick={save} style={{ width: '100%', padding: '12px' }}>Lưu phiếu nhập</Btn>
       </div>
     </Card>
   )

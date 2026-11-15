@@ -129,6 +129,14 @@ export default function Ingredients() {
           {/* VIEW DÀNH CHO NHÂN VIÊN */}
           {!owner ? (
             <div className="stack">
+              {!me.has_active_shift && (
+                <Notice kind="warn">
+                  <div className="row spread" style={{ width: '100%', gap: 8, flexWrap: 'wrap' }}>
+                    <span>⚠️ Bạn đang xem ở chế độ tra cứu (chưa mở phiên ca làm). Vui lòng bấm <b>[Vào ca bằng QR/PIN]</b> để mở phiên làm việc trước khi tạo phiếu giao ca hoặc nhập hàng.</span>
+                    <Btn size="sm" kind="primary" onClick={() => { window.location.href = '/kiosk' }}>🟢 Vào ca bằng QR/PIN</Btn>
+                  </div>
+                </Notice>
+              )}
               <Notice kind="info">
                 <b>Quy tắc báo cáo tình trạng nguyên liệu:</b> Quán không theo dõi trừ kho tự động theo định lượng từng món. Nhân viên <b>kiểm tra trực tiếp bằng mắt tại quầy/tủ bảo quản</b> đầu hoặc cuối ca: nếu ước lượng chỉ còn đủ dùng dưới 1–2 ca thì báo <b>Sắp hết</b>, nếu đã cạn sạch thì báo <b>Hết hẳn</b>, hoặc khi nhận hàng mới về thì báo <b>Đã đủ</b>.
               </Notice>
@@ -199,7 +207,7 @@ export default function Ingredients() {
                   <Btn
                     kind="primary"
                     busy={busyReport}
-                    disabled={!selectedIngId}
+                    disabled={!selectedIngId || !me.has_active_shift}
                     onClick={handleStaffSubmit}
                     style={{ width: '100%', padding: '10px' }}
                   >

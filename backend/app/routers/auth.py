@@ -9,8 +9,8 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from ..db import get_db
-from ..deps import (COOKIE, SETTING_DEFAULTS, Actor, audit, current_actor, get_config, get_setting, owner_only,
-                    set_setting)
+from ..deps import (COOKIE, SETTING_DEFAULTS, Actor, audit, current_actor, get_config, get_setting,
+                    has_active_shift, owner_only, set_setting)
 from ..models import Employee, ShiftType, User, PayRate, SessionToken
 from ..security import (LOCK_MINUTES, MAX_FAILED, MIN_PASSWORD, expiry, hash_password, new_token, utcnow,
                         validate_password_strength, verify_password)
@@ -123,9 +123,10 @@ def logout(response: Response, actor: Actor = Depends(current_actor), db: Sessio
 
 
 @router.get("/auth/me")
-def me(actor: Actor = Depends(current_actor)):
+def me(actor: Actor = Depends(current_actor), db: Session = Depends(get_db)):
+    active_shift = has_active_shift(db, actor.employee_id) if actor.role == "staff" else True
     return {"id": actor.id, "username": actor.username, "display_name": actor.display_name, "role": actor.role,
-            "employee_id": actor.employee_id}
+            "employee_id": actor.employee_id, "has_active_shift": active_shift}
 
 
 class ChangePassword(BaseModel):

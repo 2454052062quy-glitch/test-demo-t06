@@ -212,21 +212,27 @@ function getOrCreateKioskId() {
 
 // Màn hình chờ (hiển thị QR + chọn tên + nhập PIN)
 function KioskIdle({ kioskId, onEntered }) {
+  const { me } = useApp() || {}
+  const isLockedStaff = me?.role === 'staff' && Boolean(me?.id)
   const toast = useToast()
   const [qrData, setQrData] = useState(null)
   const [qrErr, setQrErr] = useState('')
   const [pinMode, setPinMode] = useState(false)
   const [users, setUsers] = useState([])
-  const [selUser, setSelUser] = useState(null)
+  const [selUser, setSelUser] = useState(isLockedStaff ? me.id : null)
   const [pin, setPin] = useState('')
   const [busy, setBusy] = useState(false)
   const pollRef = useRef(null)
   const qrTimerRef = useRef(null)
 
-  // Lấy danh sách nhân viên để hiển thị chọn tên PIN
+  // Lấy danh sách nhân viên để hiển thị chọn tên PIN (chỉ khi là Kiosk dùng chung, chưa đăng nhập riêng)
   useEffect(() => {
+    if (isLockedStaff) {
+      setSelUser(me.id)
+      return
+    }
     get('/attendance/kiosk/employees').then(us => setUsers(us || [])).catch(() => {})
-  }, [])
+  }, [isLockedStaff, me?.id])
 
   // Tạo QR mới
   const loadQr = useCallback(async () => {
@@ -364,13 +370,20 @@ function KioskIdle({ kioskId, onEntered }) {
         <div className="kiosk-pin-area">
           <div className="stack" style={{ maxWidth: 320, margin: '0 auto', padding: 16, background: 'var(--surface)', borderRadius: 12, border: '1px solid var(--line)' }}>
             <h3 style={{ margin: 0 }}>Đăng nhập bằng PIN</h3>
-            <div>
-              <label style={{ fontSize: '.85rem', color: 'var(--muted)' }}>Chọn nhân viên</label>
-              <select className="select" style={{ width: '100%', marginTop: 4 }} value={selUser || ''} onChange={e => setSelUser(Number(e.target.value) || null)}>
-                <option value="">— Chọn tên —</option>
-                {users.map(u => <option key={u.id} value={u.id}>{u.display_name}</option>)}
-              </select>
-            </div>
+            {isLockedStaff ? (
+              <div>
+                <label style={{ fontSize: '.85rem', color: 'var(--muted)' }}>Nhân viên</label>
+                <input className="input" style={{ width: '100%', marginTop: 4, fontWeight: 600 }} value={me.display_name} disabled />
+              </div>
+            ) : (
+              <div>
+                <label style={{ fontSize: '.85rem', color: 'var(--muted)' }}>Chọn nhân viên</label>
+                <select className="select" style={{ width: '100%', marginTop: 4 }} value={selUser || ''} onChange={e => setSelUser(Number(e.target.value) || null)}>
+                  <option value="">— Chọn tên —</option>
+                  {users.map(u => <option key={u.id} value={u.id}>{u.display_name}</option>)}
+                </select>
+              </div>
+            )}
             <div>
               <label style={{ fontSize: '.85rem', color: 'var(--muted)' }}>Mã PIN (4–6 số)</label>
               <input className="input" type="password" inputMode="numeric" maxLength={6}
@@ -428,7 +441,8 @@ function KioskActive({ session, kioskId, onExited }) {
     try {
       // Dùng pin-login để ghi ra ca (kind sẽ là "out" vì đang có phiên "in")
       const r = await post('/attendance/kiosk/pin-login', { kiosk_id: kioskId, user_id: session.user_id, pin })
-      toast(`Đã ghi nhận RA CA · ${session.employee_name || session.display_name}`)
+      const t = new Date(r.opened_at || Date.now()).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+      toast(`Đã ghi nhận RA CA · ${session.employee_name || session.display_name} lúc ${t}`)
       onExited({ ...r, reason: 'end_shift' })
     } catch (e) {
       toast(e.message, 'bad')
@@ -623,7 +637,7 @@ export function AttendanceQr() {
                   <td><Badge kind={l.auto_closed ? 'warn' : 'info'}>{l.method || 'Quét QR'}</Badge></td>
                   <td>
                     {l.out_of_schedule ? (
-                      <Badge kind="warn">⚠️ Ngoài lịch</Badge>
+                      <Badge kind="warn">⚠️ Ngoài khung giờ / lịch ca</Badge>
                     ) : (
                       <Badge kind="ok">✓ Đúng lịch</Badge>
                     )}
@@ -756,7 +770,9 @@ export function AttendanceScan() {
             <div style={{ fontSize: 52, marginBottom: 8 }}>{confirmed.kind === 'in' ? '☕' : '👋'}</div>
             <h2>Đã ghi nhận {confirmed.kind === 'in' ? 'VÀO CA' : 'RA CA'}</h2>
             <p style={{ margin: '8px 0 12px' }}>
-              Chào <b>{confirmed.employee_name || me?.display_name || 'bạn'}</b>, hệ thống đã ghi nhận thành công và tự động đồng bộ lên máy quầy.
+              Chào <b>{confirmed.employee_name || me?.display_name || 'bạn'}</b>, hệ thống đã ghi nhận lúc{' '}
+              <b>{new Date(confirmed.at || Date.now()).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</b>{' '}
+              và tự động đồng bộ lên máy quầy.
             </p>
             {confirmed.out_of_schedule && (
               <Notice kind="warn" style={{ textAlign: 'left', marginBottom: 16 }}>

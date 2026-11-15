@@ -1,0 +1,19 @@
+# Quy tắc xác thực phiên làm việc và chấm công tại quầy (E-09)
+
+## 1. Cơ chế hoạt động của màn hình Máy quầy (/kiosk)
+- **Tách biệt quyền truy cập tại máy quầy dùng chung:** Máy tính đặt tại quầy thu ngân mở sẵn đường dẫn `/kiosk` mà không cần đăng nhập tài khoản Chủ quán. Ở môi trường dữ liệu thật (Live), thiết bị phải được Chủ quán đăng ký trong mục Cài đặt (`registered_kiosk_ids`) mới có quyền yêu cầu sinh mã QR.
+- **Mã QR động dùng một lần:** Màn hình `/kiosk` tự động yêu cầu hệ thống sinh mã QR ngẫu nhiên có thời hạn 120 giây (2 phút) và tự động làm mới định kỳ. Ngay khi nhân viên quét mã và bấm xác nhận, mã đó bị đánh dấu đã sử dụng (`used = True`) để ngăn chặn việc chụp ảnh màn hình gửi điểm danh hộ từ xa.
+- **Liên kết tự động giữa điện thoại và máy quầy:** Nhân viên dùng điện thoại cá nhân (đã đăng nhập tài khoản của mình) quét mã QR tại quầy, mở trang xác nhận và bấm nút Vào ca hoặc Ra ca. Hệ thống ghi nhận thời gian thực tế vào bảng `attendance_logs` theo múi giờ Việt Nam, đồng thời tự động chuyển màn hình máy quầy sang phiên làm việc của nhân viên vừa quét (`pos_kiosk_sessions`).
+- **Phương án dự phòng bằng mã PIN:** Trường hợp điện thoại của nhân viên hết pin hoặc mất kết nối mạng, nhân viên có thể nhập trực tiếp mã PIN cá nhân (4 đến 6 chữ số do Chủ quán cấp) ngay trên màn hình `/kiosk` để vào ca hoặc ra ca. Nếu màn hình `/kiosk` được mở từ tài khoản nhân viên đang đăng nhập sẵn, hệ thống tự động khóa cố định tên của chính nhân viên đó; nếu mở ở máy quầy dùng chung chưa đăng nhập riêng, hệ thống hiển thị danh sách chọn tên nhân viên.
+- **Tự động đóng phiên khi quên kết thúc ca:** Khi nhân viên ca sau thực hiện quét mã QR hoặc nhập PIN vào ca mới, nếu phiên làm việc của nhân viên ca trước chưa đóng, hệ thống sẽ tự động đóng phiên cũ kèm trạng thái tự động đóng (`auto_closed = True`) trước khi mở phiên mới.
+
+## 2. Quy tắc kiểm tra và cảnh báo đối soát
+| Tình huống phát sinh | Cách hệ thống xử lý và hiển thị |
+|---|---|
+| Nhân viên thực hiện Ra ca nhưng trong ngày chưa có bản ghi Vào ca (`has_active_shift = False`) | Hệ thống chặn cứng thao tác Ra ca trên cả luồng QR lẫn PIN với mã lỗi HTTP 400 ("Bạn chưa thực hiện Vào ca nên không thể Ra ca"), tuyệt đối không tạo bản ghi Ra ca lẻ loi. Trên thanh đầu trang của nhân viên, nút "Kết thúc ca" chỉ hiển thị khi `has_active_shift = True`, ngược lại hiển thị nút "Vào ca (Mở phiên QR/PIN)". |
+| Nhân viên quét mã vào ngày không có tên trong lịch phân công chính thức | Hệ thống vẫn cho phép ghi nhận và tự động gắn cờ "Ngoài khung giờ / lịch ca" (`out_of_schedule = True`) phục vụ trường hợp làm thay đột xuất để Chủ quán đối chiếu. |
+| Nhân viên có lịch ca nhưng quét mã ngoài khung giờ quy định của ca | Hệ thống đối chiếu giờ quét thực tế (GMT+7) với `start_time` và `end_time` của ca được phân công kèm biên độ cho phép sớm 60 phút và trễ 60 phút. Nếu nằm ngoài khung giờ này, bản ghi bị gắn cờ `out_of_schedule = True` và hiển thị nhãn cảnh báo vàng "Ngoài khung giờ / lịch ca" trên bảng Nhật ký chấm công. |
+| Nhân viên đăng nhập từ xa nhưng chưa mở phiên làm việc (`has_active_shift = False`) | Hệ thống chỉ cho phép xem ở chế độ tra cứu (lịch ca, bảng lương, thông báo). Giao diện Giao ca, Nhập hàng và Báo nguyên liệu hiển thị cảnh báo yêu cầu mở phiên và khóa các nút gửi phiếu; tầng API trả về mã lỗi HTTP 403 nếu gọi tạo phiếu khi chưa mở phiên Vào ca. |
+
+## 3. Nguyên tắc bảo toàn công thức lương
+Theo đúng thống nhất với Chủ quán tại bước xác nhận yêu cầu (VG06), dữ liệu chấm công QR và PIN tại mục E-09 chỉ dùng làm nhật ký đối chiếu thời gian làm việc thực tế. Bảng lương tháng vẫn được tính tự động từ số ca trong Lịch phân công đã công bố và các đơn đổi ca đã duyệt.

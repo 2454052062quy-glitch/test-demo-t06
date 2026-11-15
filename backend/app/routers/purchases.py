@@ -14,7 +14,8 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from ..db import get_db
-from ..deps import Actor, audit, check_duty_access, current_actor, get_config, month_days, owner_only, today_vn, valid_month
+from ..deps import (Actor, audit, check_duty_access, current_actor, get_config, month_days, owner_only,
+                    require_active_shift, today_vn, valid_month)
 from ..models import Ingredient, IngredientStatusRow, Purchase, PurchaseAttachment, PurchaseItem, Supplier, utcnow
 
 router = APIRouter(prefix="/api")
@@ -106,6 +107,7 @@ def _detail(db: Session, p: Purchase) -> dict:
 
 @router.post("/purchases")
 def create_purchase(body: PurchaseBody, actor: Actor = Depends(current_actor), db: Session = Depends(get_db)):
+    require_active_shift(db, actor)
     if body.doc_type not in DOC_TYPES:
         raise HTTPException(422, "Loại chứng từ không hợp lệ")
     access = check_duty_access(db, actor, "purchase.write", body.purchase_date)
@@ -316,6 +318,7 @@ def delete_ingredient(iid: int, actor: Actor = Depends(owner_only), db: Session 
 
 @router.post("/ingredient-status")
 def report_status(body: StatusBody, actor: Actor = Depends(current_actor), db: Session = Depends(get_db)):
+    require_active_shift(db, actor)
     if body.status not in ("du", "sap_het", "het", "da_dat"):
         raise HTTPException(422, "Tình trạng chỉ gồm du, sap_het, het, da_dat")
     ing = db.get(Ingredient, body.ingredient_id)

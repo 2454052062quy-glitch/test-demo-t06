@@ -340,6 +340,8 @@ function StaffHandover() {
   const isOver10 = refAmount > 0 && Math.abs((Number(f.pos_revenue_entered) || 0) - refAmount) > 0.10 * refAmount
   const needNote = isOver10 || itemsList.length > 0 || (Number(f.shortage_refund) || 0) !== 0 || (Number(f.extra) || 0) !== 0
 
+  const noActiveShift = me.role === 'staff' && !me.has_active_shift
+
   // Lưu hoặc Gửi biên bản
   const handleSave = async (submitNow) => {
     if (assignedWrongPerson) {
@@ -475,6 +477,15 @@ function StaffHandover() {
             </Notice>
           )}
 
+          {noActiveShift && (
+            <Notice kind="warn">
+              <div className="row spread" style={{ width: '100%', gap: 8, flexWrap: 'wrap' }}>
+                <span>⚠️ Bạn đang xem ở chế độ tra cứu (chưa mở phiên ca làm). Vui lòng bấm <b>[Vào ca bằng QR/PIN]</b> để mở phiên làm việc trước khi tạo phiếu giao ca hoặc nhập hàng.</span>
+                <Btn size="sm" kind="primary" onClick={() => { window.location.href = '/kiosk' }}>🟢 Vào ca bằng QR/PIN</Btn>
+              </div>
+            </Notice>
+          )}
+
           <div className="grid2">
             <Field label="Ngày kinh doanh">
               <input
@@ -555,10 +566,10 @@ function StaffHandover() {
           </Field>
 
           <div className="row spread" style={{ paddingTop: 8, borderTop: '1px solid var(--line)' }}>
-            <Btn busy={busy} disabled={assignedWrongPerson} onClick={() => handleSave(false)}>
+            <Btn busy={busy} disabled={assignedWrongPerson || noActiveShift} onClick={() => handleSave(false)}>
               {editingId ? 'Lưu cập nhật nháp' : 'Lưu nháp'}
             </Btn>
-            <Btn kind="primary" busy={busy} disabled={assignedWrongPerson} onClick={() => handleSave(true)}>
+            <Btn kind="primary" busy={busy} disabled={assignedWrongPerson || noActiveShift} onClick={() => handleSave(true)}>
               {editingId ? 'Cập nhật & Ký giao ca →' : 'Ký giao ca →'}
             </Btn>
           </div>

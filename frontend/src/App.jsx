@@ -322,7 +322,8 @@ function EndShiftModal({ me, onClose, onDone }) {
             const st = await get(`/attendance/kiosk/qr/status?token=${r.token}&kiosk_id=${kioskId}`)
             if (st.confirmed && st.kind === 'out') {
               clearInterval(pollTimer)
-              toast(`Đã ghi nhận RA CA cho ${st.employee_name || me.display_name}`)
+              const t = new Date(st.at || Date.now()).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+              toast(`Đã ghi nhận RA CA cho ${st.employee_name || me.display_name} lúc ${t}`)
               onDone()
             }
           } catch {}
@@ -350,7 +351,8 @@ function EndShiftModal({ me, onClose, onDone }) {
     try {
       const kioskId = getKioskId()
       const r = await post('/attendance/kiosk/end-shift', { kiosk_id: kioskId, pin })
-      toast(`Đã ghi nhận RA CA cho ${r.employee_name || me.display_name}`)
+      const t = new Date(r.at || Date.now()).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
+      toast(`Đã ghi nhận RA CA cho ${r.employee_name || me.display_name} lúc ${t}`)
       onDone()
     } catch (e) {
       toast(e.message, 'bad')
@@ -625,16 +627,29 @@ function Shell({ me, meta, logout, currentMonth, setCurrentMonth }) {
             )}
 
             {!isOwner && meta?.flags?.E09_QR_ATTENDANCE && (
-              <button
-                type="button"
-                className="btn sm end-shift-btn"
-                style={{ background: '#e53e3e', color: '#fff', borderColor: '#e53e3e', fontWeight: 600 }}
-                onClick={() => setEndShiftOpen(true)}
-                title="Kết thúc ca làm việc (ra ca)"
-              >
-                <span className="hide-mobile">🏁 Kết thúc ca</span>
-                <span className="show-mobile">🏁 Ra ca</span>
-              </button>
+              me.has_active_shift ? (
+                <button
+                  type="button"
+                  className="btn sm end-shift-btn"
+                  style={{ background: '#e53e3e', color: '#fff', borderColor: '#e53e3e', fontWeight: 600 }}
+                  onClick={() => setEndShiftOpen(true)}
+                  title="Kết thúc ca làm việc (ra ca)"
+                >
+                  <span className="hide-mobile">👋 Kết thúc ca</span>
+                  <span className="show-mobile">👋 Ra ca</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn sm"
+                  style={{ background: '#16a34a', color: '#fff', borderColor: '#16a34a', fontWeight: 600 }}
+                  onClick={() => { window.location.href = '/kiosk' }}
+                  title="Mở phiên làm việc bằng QR hoặc PIN tại Máy quầy"
+                >
+                  <span className="hide-mobile">🟢 Vào ca (Mở phiên QR/PIN)</span>
+                  <span className="show-mobile">🟢 Vào ca</span>
+                </button>
+              )
             )}
 
             <NotificationBell me={me} />

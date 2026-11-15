@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 from ..db import get_db
 from ..deps import (Actor, audit, check_duty_access, current_actor, employee_names, month_days, owner_only,
-                    today_vn, valid_month)
+                    require_active_shift, today_vn, valid_month)
 from ..models import Assignment, HandoverRow, PosOrder, ScheduleMonth, utcnow
 from ..services import handover as ho
 
@@ -117,6 +117,7 @@ def list_handovers(month: str, shift: str | None = None, has_variance: bool = Fa
 
 @router.post("")
 def create(body: HandoverBody, actor: Actor = Depends(current_actor), db: Session = Depends(get_db)):
+    require_active_shift(db, actor)
     if body.shift_code not in ho.SHIFTS:
         raise HTTPException(422, "Ca không hợp lệ")
     if body.pos_revenue_entered <= 0 and body.transfer_total <= 0 and body.cash_handed <= 0 and not body.note.strip():

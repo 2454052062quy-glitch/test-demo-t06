@@ -13,10 +13,10 @@ from sqlalchemy.orm import Session
 
 from .config import AppConfig
 from .db import get_db
-from .models import Assignment, AuditLog, Employee, SessionToken, Setting, User
+from .models import Assignment, AttendanceLog, AuditLog, Employee, SessionToken, Setting, ShiftType, User
 from .security import token_hash, utcnow
 from .services.duty import evaluate_access
-from .services.timeutil import VN_TZ
+from .services.timeutil import VN_TZ, to_vn
 
 COOKIE = "t06_session"
 SETTING_DEFAULTS = {
@@ -116,6 +116,74 @@ def assigned_on(db: Session, employee_id: int | None, work_date: date) -> bool:
         return False
     return db.scalar(select(Assignment.id).where(Assignment.work_date == work_date,
                                                  Assignment.employee_id == employee_id).limit(1)) is not None
+
+
+def has_active_shift(db: Session, employee_id: int | None) -> bool:
+    """Kiểm tra nhân viên hiện có phiên làm việc hợp lệ (bản ghi Attendance mới nhất trong ngày là 'in')."""
+    if employee_id is None:
+        return False
+    last = db.scalar(
+        select(AttendanceLog)
+        .where(AttendanceLog.employee_id == employee_id, AttendanceLog.work_date == today_vn())
+        .order_by(AttendanceLog.id.desc())
+        .limit(1)
+    )
+    return last is not None and last.kind == "in"
+
+
+def require_active_shift(db: Session, actor: Actor) -> None:
+    """Chặn nhân viên tạo phiếu giao ca / nhập hàng / báo kho khi chưa mở phiên Vào ca."""
+    if actor.role == "staff" and not has_active_shift(db, actor.employee_id):
+        raise HTTPException(
+            403,
+            "Bạn chưa mở phiên làm việc (Vào ca). Vui lòng xác thực Vào ca bằng QR hoặc PIN tại Máy quầy trước khi thực hiện giao ca / nhập hàng.",
+        )
+
+
+def _parse_hhmm(value: str | None) -> int | None:
+    if not value or ":" not in value:
+        return None
+    try:
+        h, m = value.strip().split(":", 1)
+        return int(h) * 60 + int(m)
+    except ValueError:
+        return None
+
+
+def is_out_of_schedule_at(
+    db: Session,
+    employee_id: int | None,
+    work_date: date,
+    at_utc: datetime,
+    tolerance_minutes: int = 60,
+) -> bool:
+    """Kiểm tra lịch phân công VÀ đối chiếu khung giờ ca (+/- tolerance_minutes)."""
+    if employee_id is None:
+        return True
+    shift_codes = list(
+        db.scalars(
+            select(Assignment.shift_code).where(
+                Assignment.work_date == work_date,
+                Assignment.employee_id == employee_id,
+            )
+        )
+    )
+    if not shift_codes:
+        return True
+
+    vn_dt = to_vn(at_utc)
+    cur_min = vn_dt.hour * 60 + vn_dt.minute
+    shift_map = {s.code: s for s in db.scalars(select(ShiftType).where(ShiftType.code.in_(shift_codes)))}
+
+    for code in shift_codes:
+        st = shift_map.get(code)
+        start_min = _parse_hhmm(st.start_time) if st else None
+        end_min = _parse_hhmm(st.end_time) if st else None
+        if start_min is None or end_min is None:
+            return False
+        if (start_min - tolerance_minutes) <= cur_min <= (end_min + tolerance_minutes):
+            return False
+    return True
 
 
 @dataclass

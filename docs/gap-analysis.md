@@ -1,132 +1,89 @@
-# Phân tích khoảng trống (GAP) – T06 Cửa hàng A
+# Phân tích khoảng trống nghiệp vụ (Gap Analysis) - Đề tài T06 Cửa hàng A
 
-Môn MAIS03010 – Nhóm 08 – IM2402. Phạm vi bản Demo v1 và Live: R01, R03, R04, R06, R07, R09. Đã loại theo xác nhận chủ quán (VG02, VG05, VG08): R02, R05, R08.
+Học phần: MAIS03010 - Nhóm 08 - Lớp IM2402.
+Phạm vi triển khai hệ thống: Giải quyết 6 yêu cầu cốt lõi đã được Chủ quán xác nhận gồm R01, R03, R04, R06, R07 và R09. Ba yêu cầu R02, R05 và R08 đã được thống nhất loại bỏ khỏi phạm vi theo xác nhận thực tế của Chủ quán tại bước kiểm duyệt (VG02, VG05, VG08).
 
-## 0. Quy ước
+## 0. Quy ước mã tham chiếu căn cứ khảo sát
 
-**Mã căn cứ** (chỉ dùng mã có trong bộ tài liệu đầu vào):
-
-| Mã | Nguồn |
+| Mã tham chiếu | Nguồn tài liệu khảo sát thực tế |
 |---|---|
-| NC-01/02/03 + Cx | Phỏng vấn chủ quán / thu ngân / pha chế-nhận hàng, câu số x |
-| QT1-B1, QT2-B1, QT3a-B1, QT3b-K + mục | Biên bản quan sát (mục C.x.y, bước n, Bảng D–H) |
-| VII.1, VII.2.A, M11–M17 | Tổng hợp cuối Observation_Notes.md (bản đồ nguồn dữ liệu, đối chiếu lời kể/quan sát, điểm mâu thuẫn) |
-| CQ01–CQ11, NV01–NV09 | Câu hỏi bổ sung (follow-up-qa.md) |
-| QS01–QS04 | Kiểm tra trực tiếp trên POS365 ngày 07/11/2026 |
-| VG01–VG09 | Phản hồi Validation Gate của chủ quán ngày 07/11/2026 |
-| R01–R09 | Phụ lục B (requirements-list.md) |
-| API §n | "API Specification Doc (www.pos365.vn) v1.0", mục n |
-| IMG-QS02 | Ảnh `pos365-qs02-export-columns.png` (file xuất đã che) |
-| CĐ-GV | "Chỉ đạo tối ưu hóa tự động hóa từ Giảng viên hướng dẫn" (do nhóm nêu trong yêu cầu; chưa có văn bản kèm theo, xem D04) |
+| NC-01, NC-02, NC-03 + Cx | Biên bản phỏng vấn Chủ quán, nhân viên thu ngân và nhân viên pha chế/nhận hàng (câu hỏi số x) |
+| QT1-B1, QT2-B1, QT3a-B1, QT3b-K | Biên bản quan sát trực tiếp các quy trình vận hành tại Cửa hàng A |
+| VII.1, VII.2.A, M11 đến M17 | Bảng tổng hợp bản đồ nguồn dữ liệu và đối chiếu điểm mâu thuẫn trong tài liệu khảo sát |
+| CQ01 đến CQ11, NV01 đến NV09 | Bản trả lời câu hỏi khảo sát bổ sung của Chủ quán và Nhân viên |
+| QS01 đến QS04 | Biên bản kiểm tra trực tiếp trên phần mềm POS365 tại quán ngày 07/11/2026 |
+| VG01 đến VG09 | Kết quả xác nhận phạm vi yêu cầu (Validation Gate) của Chủ quán ngày 07/11/2026 |
+| R01 đến R09 | Danh mục yêu cầu hệ thống tại Phụ lục B |
+| API Mục n | Tài liệu đặc tả kỹ thuật "API Specification Doc (www.pos365.vn) v1.0" |
+| IMG-QS02 | Hình ảnh cấu trúc tệp xuất chi tiết doanh thu thực tế từ POS365 (đã che thông tin nhạy cảm) |
+| CĐ-GV | Định hướng tối ưu hóa quy trình tự động từ Giảng viên hướng dẫn cho phân hệ lịch ca và đổi ca |
 
-**Loại bằng chứng** theo quy ước của nhóm: T = thấy trực tiếp, N = nghe kể, S = suy luận (không dùng làm căn cứ, chỉ nêu để kiểm chứng).
+Phân loại bằng chứng khảo sát: Ký hiệu (T) là quan sát thấy trực tiếp tại quán, (N) là thông tin ghi nhận qua lời kể phỏng vấn, (S) là nhận định suy luận kỹ thuật cần kiểm chứng.
 
-**Mã quyết định D01–D28**: các điểm "chưa có căn cứ trong tài liệu" cần nhóm quyết, liệt kê ở Phụ lục cuối file.
+## 1. Bảng phân tích khoảng trống (GAP) giữa hiện trạng As-Is và hệ thống To-Be
 
-## 1. Bảng GAP chính
-
-| # | Hiện trạng (AS-IS) | Vấn đề / ốc đảo dữ liệu | Khoảng trống (GAP) | R | Chức năng đề xuất (TO-BE) | Căn cứ |
+| Mã GAP | Hiện trạng vận hành (As-Is) | Vấn đề tồn tại và sự phân mảnh dữ liệu | Khoảng trống hệ thống (GAP) | Mã R | Giải pháp chức năng đề xuất (To-Be) | Căn cứ khảo sát |
 |---|---|---|---|---|---|---|
-| G01 | POS365 ghi từng đơn; cuối ngày nhân viên in báo cáo ra giấy, không xuất file | Doanh thu nằm trên giấy in; POS có nút xuất nhưng quán không dùng | Không có đường đưa dữ liệu doanh thu POS vào hệ thống tổng hợp | R01 | F01-A đồng bộ API POS365; F01-B nạp file "Chi tiết doanh thu" | NC-01 C5: "Quán không xuất dữ liệu ra Excel/CSV, thường in ra giấy"; QT1-B1 C.1.10–1.11 (T); CQ06 (N); QS02 (T: xuất được 8 cột); API §5.1 |
-| G02 | Cuối tháng chủ quán nhìn giấy in/biên bản rồi gõ lại doanh thu từng ngày vào Excel | Chép lại lần 2 | Chưa có tổng hợp doanh thu theo ngày/tháng tự động | R01 | F01-E doanh thu theo ngày/tháng | QT3b-K C.3b.4 (N); VII.1 dòng "Doanh thu" (chép lại lần 2); VG01 "1 cần" |
-| G03 | Dữ liệu POS có thể đi vào hệ thống bằng hai đường, dễ trùng | Cùng một hóa đơn có thể vào từ API rồi lại vào từ file | Chưa có khóa chống nhân đôi | R01 | F01-C chống trùng theo mã chứng từ (`doc_code`) | API §5.1 (trường `Code`); QS02 (cột "Mã chứng từ"); yêu cầu kỹ thuật của nhóm |
-| G04 | Báo cáo/file xuất của POS có dòng tổng và (theo nhóm kiểm chứng) có đơn hủy | Cộng thẳng sẽ lệch số đơn và doanh thu | Chưa có bước làm sạch dữ liệu POS | R01 | F01-D lọc dòng tổng, đơn hủy; đổi UTC → GMT+7 | IMG-QS02 (dải tổng ngay dưới tiêu đề và cuối bảng; khối "Số đơn hàng/Tổng thanh toán" ở đầu file); QT1-B1 Bảng F (dòng "Hóa đơn hủy/Trả hàng"); API §5.1 (`PurchaseDate` có hậu tố Z); dòng `Id = -1`/`Σ`: theo nhóm kiểm chứng, **không có trong PDF** (D08) |
-| G05 | Không ai ghi lại lần đồng bộ/nhập nên không biết số liệu lấy lúc nào, từ đâu | Khó đối soát khi số lệch | Thiếu nhật ký nạp dữ liệu | R01 | F01-F nhật ký đồng bộ/nhập (có đối soát `__count`, khối tổng của file) | API §2 (`__count`); IMG-QS02 (khối tổng đầu file). **Căn cứ kỹ thuật, không phải nhu cầu nêu bởi chủ quán** |
-| G06 | POS không phân biệt tiền mặt/chuyển khoản khi bán; báo cáo ghi toàn bộ là tiền mặt | Phải đối chiếu qua ảnh bill trên điện thoại | Hệ thống **không** giải quyết (chủ quán bác R02) | (R02 loại) | Không xây. Chuyển khoản chỉ ghi ở biên bản giao ca (F03-A) | NC-02 C1 (N); QT1-B1 Bảng F (T); QS02 (T: file không có cột phương thức); QS04 (T: màn hình có chọn chuyển khoản); M13 (còn mở); VG02 "2 không cần" |
-| G07 | Giao ca/kết ca bằng biên bản giấy 7 mục + chụp ảnh gửi Zalo | Chép tay 2 lần (doanh thu POS, tổng chuyển khoản); 4 nơi chứa số liệu | Chưa có biên bản điện tử, chưa có xác nhận bàn giao trên hệ thống | R03 | F03-A biên bản giao ca; F03-B xác nhận bàn giao | QT1-B1 bước 1–5, Bảng H (T: 5 bước, 2 lần chép, 4 nơi); NC-02 C4 (N); NV03, NV05 (N); VG03 "3 cần" |
-| G08 | Có lần két thiếu; ca sau phát hiện hoặc người kết ca tự đếm lại; bù bằng quỹ chung hoặc tự bù | Chênh lệch và lý do không được ghi ở đâu có cấu trúc | Chưa có chỗ ghi khoản thiếu/trả, phát sinh, lý do | R03 | F03-A (các cột Thiếu/trả, Phát sinh, ghi chú), **không tự tính công thức tiền két** | CQ02, NV01, NV05 (N, 02/11/2026); NC-02 C4 (N); M15; R03 ("không tự động tính công thức cứng"); VG02 |
-| G09 | Doanh thu "theo ca" không có sẵn trên POS (báo cáo theo ngày; POS không có thao tác đóng ca) | Không biết cách tách doanh thu từng ca | Chưa rõ căn cứ để điền sẵn "Doanh thu hệ thống" theo ca | R03 | F03-A: nhân viên nhập số "Hệ thống"; hệ thống chỉ hiển thị tổng ngày từ R01 để tham chiếu | QT1-B1 C.1.6 (KX), Bảng F (T: "Doanh thu theo nhân viên / theo ca: Không"); M12; NV03 (N, chưa trả lời phần tách ca); D05 |
-| G10 | Hàng về: nhân viên đếm, đối chiếu hóa đơn/biên lai, chụp ảnh báo Zalo, cất chứng từ giấy | Số lượng, đơn giá chỉ nằm trên giấy và ảnh Zalo; không vào POS/sổ/bảng tính | Chưa có sổ nhập hàng theo từng lần | R04 | F04-A ghi từng lần nhập; F04-C lịch sử và tổng chi phí nguyên liệu | QT2-B1 C.2.4–2.11 (T), Bảng F (T: 10/11 trường có), Bảng H (T: 2 nơi, 30 phút); CQ04 "Mua lần nào nhập vào lần đó luôn, không nhập tổng"; VG04 "4 cần" |
-| G11 | Có hàng không hóa đơn (nước thùng) và mua lẻ ở tạp hóa khi hết hàng | Không có chứng từ chuẩn; chỉ nhắn Zalo | Chưa có cách ghi nhận khoản nhập không hóa đơn | R04 | F04-A có trường "loại chứng từ" (hóa đơn / biên lai viết tay / không chứng từ) | CQ03, NV07, NV09, CQ11 (N); QT2-B1 C.2.7 (T: hóa đơn và biên lai viết tay); R04 ("hàng có hóa đơn, nước thùng không có hóa đơn và các khoản mua lẻ") |
-| G12 | Cuối tháng chủ quán gom hóa đơn giấy để cộng tay chi phí nguyên liệu | Cộng tay | Chi phí nguyên liệu tháng chưa tự cộng | R04, R07 | F04-C tổng theo tháng, đưa vào F07-B | QT3b-K C.3b.5 (N); M11 (hai lời kể chưa khớp, D11) |
-| G13 | Báo thiếu nguyên liệu bằng nhắn nhóm Zalo; chủ quán xem rồi đặt; có lần hết giữa ca (30/10 sữa tươi) | Thông tin báo rời rạc, hết hàng chỉ biết khi pha | Chưa có chỗ ghi tình trạng nguyên liệu để chủ quán theo dõi | R09 | F09-A danh mục nguyên liệu; F09-B báo sắp hết/hết; F09-C bảng theo dõi | NC-03 C1, C9 (N); NV09, CQ11 (N); NC-01 C6 (N); VG09 "9 cần"; R09 ("không tự động tính tồn kho theo định mức") |
-| G14 | Tồn kho/hao hụt/hàng hủy không ghi ở đâu; POS: Giá vốn = 0, tồn kho 0 hoặc âm | Không có dữ liệu tồn kho đáng tin | **Không** lấp bằng ước tính tồn kho (chủ quán bác R05 vì số lệch gây hiểu nhầm) | (R05 loại) | Không xây tồn kho ước tính trong lõi (xem D03) | QS03 (T); NV08 (N: điều chỉnh định lượng không ghi); NC-03 C6 (N); VG05 |
-| G15 | Nhân viên gửi lịch rảnh cho chủ quán qua Zalo cá nhân ngày 25; chủ quán tổng hợp, xếp, gửi Zalo nhóm để chốt; lịch gốc là file bảng tính | Lịch nằm trên Zalo/bảng tính; không có chỗ xem thống nhất | Chưa có nơi xem thời khóa biểu chính thức; chưa có đường nạp lịch từ Zalo | R06 | **Đường 1**: F06-B nạp file Excel/CSV lịch ca, F06-E xem thời khóa biểu | NC-01 C1, C2 (N); NC-02 C7 (N); QT3a-B1 C.3a.1 (T: thấy file bảng tính lịch trong Zalo nhóm); VG06 |
-| G16 | Bước nhân viên gửi lịch rảnh và nhận lịch cuối cùng đều qua tin nhắn | Hiện đã có bước "khai báo lịch rảnh" nhưng bằng tin nhắn riêng | Chưa số hóa khai báo lịch rảnh → xếp lịch → công bố | R06 | **Đường 2**: F06-C khai báo lịch rảnh; F06-D chủ quán xếp/duyệt/công bố (xếp thủ công, không có thuật toán xếp tự động) | Căn cứ nền: NC-01 C2, NC-02 C7 (N). Căn cứ chức năng: **CĐ-GV**. Lưu ý: Phụ lục B mục 2 ghi "Xếp ca tự động" không đưa thành requirement (NC-01 C1) |
-| G17 | Đổi ca: nhân viên tự nhắn nhau, tự nhớ, cuối tháng báo chủ quán; xin đi trễ phải báo chủ trước | Chủ quán chỉ biết khi cuối tháng; không có bản ghi | Chưa có yêu cầu đổi ca có người duyệt và lưu vết | R06 | F06-F yêu cầu đổi ca → chủ quán duyệt → cập nhật CSDL ngay | QT3a-B1 C.3a.3 (N), G3; NC-01 C2 (N); CQ05 (N: "cuối tháng anh sẽ hỏi các bạn các ca đổi cho nhau để kiểm soát"); R06; **CĐ-GV** (đổi sang duyệt trước, D04) |
-| G18 | Cuối tháng nhân viên tự tính lương theo công thức ca rồi gửi chủ quán qua Zalo cá nhân | Tính tay, dễ sót đổi ca | Chưa tự tính giờ công/lương theo ca | R06 | F06-G tính lương theo công thức a×5,5×(ca sáng) + b×5,5×(ca trưa) + b×4,0×(ca tối) | CQ05, NV06 (N); R06; VG06 "6 cần"; giá trị a, b đã che (D06) |
-| G19 | Quán không ghi giờ vào/ra hằng ngày; giờ công dựa lịch | Không có dữ liệu giờ thực | **Không** xây chấm công trong lõi (chỉ "nếu được", mức Low) | R06 | Không xây trong lõi; ghi vào MỞ RỘNG (E-09) | QT3a-B1 G1 "Không ghi giờ làm vào mỗi ngày" (N), C.3a.2 (N); R06 ghi chú; VG06 |
-| G20 | Lãi/lỗ cuối tháng: chủ quán mở Excel, gom 5 nguồn rời, 6 bước, khoảng 60 phút, chỉ tổng theo tháng | Không có định danh chung để nối tự động | Chưa có báo cáo lãi/lỗ tháng từ dữ liệu tập trung | R07 | F07-B báo cáo lãi/lỗ tháng | QT3b-K bước 1–6, C.3b.3–3b.11, C.3b.8 (N); VII.2.A dòng QT3; CQ08 "Tính thủ công cao, lâu, mất thời gian."; VG07 "7 cần" |
-| G21 | Chi phí mặt bằng/cố định nhập tay từng khoản vào Excel cuối tháng; file Excel có 4 mục: mặt bằng, nguyên liệu, lương, chi phí phát sinh | Không có nơi ghi chi phí cố định và phát sinh trong hệ thống | Chưa có sổ chi phí khác | R07 | F07-A sổ chi phí (nhóm: cố định / phát sinh) | QT3b-K bước 4, C.3b.6 (N); CQ04 (N, Bích tóm tắt); VG07 "nếu thêm được chi phí phát sinh nữa thì tốt" |
-| G22 | Chủ quán không có số liệu theo món/theo ca; quyết định dựa kinh nghiệm | — | **Không** xây báo cáo theo món/ca | (R08 loại) | Không xây | QT3b-K C.3b.8 (N); NC-01 C8 (N); CQ07 (N); VG08 "8 không cần" |
-| G23 | Hệ thống thay Excel cần chứng minh được | Chưa có phép so sánh hệ thống với cách tính hiện tại | Chưa có bảng đối chiếu | R07 | F07-C bảng đối chiếu số hệ thống với số chủ quán tự tính | **Căn cứ nghiệm thu của nhóm**, không có trong tài liệu khảo sát (D13) |
+| G01 | POS365 ghi nhận từng đơn hàng nhưng cuối ngày nhân viên chỉ in báo cáo ra giấy nhiệt, không xuất tệp dữ liệu | Doanh thu nằm chết trên giấy in, dù phần mềm POS có tính năng xuất tệp nhưng quán chưa khai thác | Thiếu kênh tự động đưa dữ liệu hóa đơn từ POS365 vào hệ thống quản lý tập trung | R01 | F01-A: Đồng bộ qua API POS365; F01-B: Nạp tệp bảng tính "Chi tiết doanh thu" | NC-01 C5, QT1-B1 C.1.10, CQ06, QS02, API Mục 5.1 |
+| G02 | Cuối tháng Chủ quán phải đọc lại từng tờ giấy in hoặc biên bản giao ca để gõ tay doanh thu từng ngày vào tệp Excel | Thao tác chép lại dữ liệu thủ công lần thứ hai gây mất thời gian và dễ gõ nhầm số | Chưa có công cụ tổng hợp doanh thu theo ngày và theo tháng tự động từ dữ liệu gốc | R01 | F01-E: Báo cáo và biểu đồ doanh thu tự động theo ngày và tháng | QT3b-K C.3b.4, VII.1, VG01 |
+| G03 | Dữ liệu doanh thu có thể được nạp vào từ cả đường API trực tuyến và đường tệp Excel dự phòng | Nguy cơ cùng một hóa đơn bị nạp trùng hai lần vào cơ sở dữ liệu | Thiếu cơ chế kiểm tra và chặn nhân đôi hóa đơn | R01 | F01-C: Kiểm soát chống trùng tuyệt đối theo mã chứng từ (`doc_code`) | API Mục 5.1, QS02 |
+| G04 | Dữ liệu trả về từ API và tệp xuất POS365 chứa cả các dòng tổng cộng, đơn hủy và dùng múi giờ chuẩn UTC | Nếu cộng gộp trực tiếp sẽ làm sai lệch tổng doanh thu và đẩy đơn đầu ca sáng sang ngày hôm trước | Thiếu bước làm sạch dữ liệu rác và chuẩn hóa múi giờ kinh doanh | R01 | F01-D: Lọc bỏ dòng tổng, loại đơn hủy và quy đổi thời gian từ UTC sang GMT+7 | IMG-QS02, QT1-B1 Bảng F, API Mục 5.1, CQ09, D08 |
+| G05 | Quá trình lấy dữ liệu thủ công không lưu lại lịch sử thời điểm lấy và số lượng bản ghi đã xử lý | Khó truy vết nguyên nhân khi số liệu báo cáo giữa hai thời điểm khác nhau | Thiếu nhật ký kiểm soát quá trình đồng bộ và nạp tệp | R01 | F01-F: Nhật ký đồng bộ và nạp tệp kèm số liệu đối soát tự động | API Mục 2, IMG-QS02 |
+| G06 | Nhân viên thu ngân thường bấm thanh toán mặc định là tiền mặt trên POS365 ngay cả khi khách chuyển khoản lúc đông khách | Báo cáo trên POS365 ghi nhận toàn bộ là tiền mặt, phải đối chiếu chuyển khoản qua ảnh chụp trên điện thoại | Chủ quán xác nhận không tách phương thức thanh toán trên từng bill POS để tránh làm chậm thao tác bán hàng | R02 (Loại) | Không xây dựng tính năng tách bill trên POS; tiền chuyển khoản được tổng hợp theo ca trên biên bản giao ca (F03-A) | NC-02 C1, QT1-B1 Bảng F, QS02, QS04, M13, VG02 |
+| G07 | Nhân viên giao ca bằng cách viết tay vào sổ giấy 7 mục và chụp ảnh màn hình gửi lên nhóm Zalo | Phải chép tay số liệu 2 lần, thông tin phân tán ở 4 nơi khác nhau (máy POS, giấy in, sổ tay, Zalo) | Chưa có biểu mẫu biên bản giao ca điện tử và quy trình ký nhận bàn giao trực tuyến | R03 | F03-A: Biên bản giao ca điện tử; F03-B: Xác nhận nhận ca và khóa biên bản | QT1-B1 bước 1 đến 5, Bảng H, NC-02 C4, NV03, NV05, VG03 |
+| G08 | Khi két tiền mặt bị lệch, ca sau phát hiện mới nhắn báo lại ca trước nhưng không có nơi lưu trữ nguyên nhân có cấu trúc | Chênh lệch và lý do phát sinh bị trôi trong tin nhắn, khó tra cứu lại khi cần đối chứng | Thiếu các trường ghi nhận khoản thiếu/trả, khoản phát sinh và lý do giải trình gắn liền với ca | R03 | F03-A: Lưu trữ đầy đủ 5 chỉ số tiền giao ca kèm ghi chú bắt buộc khi lệch trên 10%, không ép công thức két cứng | CQ02, NV01, NV05, NC-02 C4, M15, R03, VG02 |
+| G09 | Phần mềm POS365 tại quán không sử dụng tính năng đóng ca nên không có sẵn số doanh thu tách riêng theo từng ca trên biên bản in | Nhân viên gặp khó khăn khi cần đối chiếu doanh thu hệ thống trong khung giờ ca của mình | Thiếu số liệu tham chiếu doanh thu POS ngay trên màn hình lập biên bản giao ca | R03 | F03-A: Tích hợp nút "Lấy từ POS365" để truy vấn và hiển thị số doanh thu tham chiếu từ bảng `pos_orders` | QT1-B1 C.1.6, Bảng F, M12, NV03, D05 |
+| G10 | Khi nhà cung cấp giao hàng, nhân viên đếm hàng, kiểm tra hóa đơn giấy, chụp ảnh gửi Zalo rồi cất hóa đơn vào kẹp giấy | Số lượng và đơn giá nhập chỉ nằm trên giấy và ảnh chụp, không được nhập vào bất kỳ phần mềm hay sổ theo dõi nào | Chưa có sổ điện tử ghi nhận phiếu nhập hàng ngay tại thời điểm nhận hàng | R04 | F04-A: Ghi nhận phiếu nhập hàng trực tiếp theo từng lần nhận; F04-B: Đính kèm ảnh chứng từ | QT2-B1 C.2.4 đến 2.11, Bảng F, Bảng H, CQ04, VG04 |
+| G11 | Quán thường xuyên có các khoản mua hàng không có hóa đơn chuẩn (như đổi nước bình) hoặc nhân viên mua lẻ tại chợ, tạp hóa | Các khoản chi mua lẻ chỉ được nhắn tin trên Zalo, rất dễ bị bỏ sót khi tổng hợp chi phí cuối tháng | Thiếu phân loại chứng từ linh hoạt để ghi nhận cả các khoản mua không có hóa đơn | R04 | F04-A: Bổ sung trường phân loại chứng từ gồm Hóa đơn, Biên lai viết tay và Không chứng từ | CQ03, NV07, NV09, CQ11, QT2-B1 C.2.7, R04 |
+| G12 | Cuối tháng Chủ quán phải lấy tập hóa đơn giấy ra bấm máy tính cộng tay từng tờ để ra tổng tiền nguyên liệu | Tốn nhiều thời gian cộng sổ và dễ nhầm lẫn khi số lượng phiếu nhập lớn | Chi phí nguyên liệu tháng chưa được tự động cộng tổng và kết chuyển sang báo cáo tài chính | R04, R07 | F04-C: Tự động tổng hợp chi phí nguyên liệu theo tháng và truyền thẳng sang Báo cáo Lãi/Lỗ (F07-B) | QT3b-K C.3b.5, M11 |
+| G13 | Nhân viên kiểm tra thấy nguyên liệu sắp hết (còn dùng được khoảng 2 ngày) thì nhắn tin vào nhóm Zalo để Chủ quán đi đặt hàng | Tin nhắn báo thiếu hàng dễ bị trôi, từng xảy ra sự cố hết sạch sữa tươi giữa ca bán hàng ngày 30/10 | Chưa có bảng theo dõi tập trung trạng thái nguyên liệu cần đặt hàng và chờ giao hàng | R09 | F09-A: Danh mục nguyên liệu kèm giá nhập gần nhất; F09-B: Báo cáo trạng thái kho; F09-C: Bảng theo dõi đặt hàng | NC-03 C1, C9, NV09, CQ11, NC-01 C6, VG09, R09 |
+| G14 | Quán không ghi chép lượng hao hụt hay hủy hàng hằng ngày, trên POS365 giá vốn bằng 0 và tồn kho hiển thị số âm | Không có dữ liệu tiêu hao thực tế đáng tin cậy để tính tồn kho tự động theo định mức | Chủ quán xác nhận bác bỏ yêu cầu tự động trừ tồn kho theo công thức pha chế vì dễ lệch số thực tế | R05 (Loại) | Không xây dựng tính năng tồn kho định mức; quản lý kho theo trạng thái thực tế nhân viên kiểm đếm (R09) | QS03, NV08, NC-03 C6, VG05, D03 |
+| G15 | Ngày 25 hằng tháng nhân viên nhắn lịch rảnh qua Zalo, Chủ quán xếp lịch trên tệp bảng tính rồi gửi ảnh/tệp vào nhóm Zalo | Lịch phân ca nằm rời rạc trên ứng dụng nhắn tin, không liên kết trực tiếp với công cụ tính lương | Chưa có nơi tra cứu thời khóa biểu tập trung và chưa có công cụ nạp tệp lịch ca vào hệ thống | R06 | Đường 1: F06-B hỗ trợ nạp tệp bảng tính lịch ca theo 2 định dạng chuẩn; F06-E hiển thị thời khóa biểu trực tuyến | NC-01 C1, C2, NC-02 C7, QT3a-B1 C.3a.1, VG06 |
+| G16 | Toàn bộ quy trình từ bước đăng ký lịch rảnh đến bước xếp lịch của Chủ quán đều làm thủ công qua tin nhắn và bảng tính rời | Chủ quán mất nhiều công sức tổng hợp lịch rảnh của từng người để chia ca cho đồng đều | Chưa số hóa quy trình khai báo lịch rảnh, gợi ý xếp lịch và công bố lịch trực tiếp trên phần mềm | R06 | Đường 2: F06-C đăng ký lịch rảnh trên web; E-13 gợi ý lịch nháp; F06-D Chủ quán chỉnh sửa và công bố | NC-01 C2, NC-02 C7, CĐ-GV |
+| G17 | Khi cần đổi ca hoặc nhờ người làm phụ vài tiếng, nhân viên tự nhắn tin thỏa thuận với nhau và cuối tháng mới báo lại cho Chủ quán | Chủ quán không nắm được ai thực sự đứng ca trong ngày và cuối tháng phải đi hỏi lại từng người để tính lương | Thiếu quy trình gửi yêu cầu đổi ca/phụ ca và phê duyệt trực tuyến có lưu vết | R06 | F06-F: Nhân viên gửi yêu cầu đổi nguyên ca hoặc nhờ phụ giữa ca trên hệ thống, Chủ quán duyệt và cập nhật lịch ngay | QT3a-B1 C.3a.3, NC-01 C2, CQ05, R06, CĐ-GV, D04 |
+| G18 | Cuối tháng từng nhân viên tự đếm số ca sáng, trưa, tối của mình, nhân với hệ số lương rồi nhắn kết quả qua Zalo cho Chủ quán | Tính lương thủ công dễ sai sót khi có nhiều lần đổi ca trong tháng | Chưa có công cụ tự động đếm số ca từ lịch chính thức để tính thành tiền lương tháng | R06 | F06-G: Tự động tổng hợp số ca theo từng loại, nhân đơn giá `a`, `b`, xuất bảng lương tháng và cho phép khóa sổ | CQ05, NV06, R06, VG06, D06 |
+| G19 | Quán hiện không có máy chấm công vân tay và không ghi giờ vào/ra thực tế hằng ngày | Khó đối chiếu giờ làm thực tế khi nhân viên đi sớm, về muộn hoặc làm thay đột xuất | Chủ quán mong muốn có thêm công cụ chấm công đơn giản để đối soát nhưng giữ nguyên cách tính lương theo ca | R06, E-09 | Triển khai màn hình Máy quầy (`/kiosk`) xác thực vào/ra ca bằng mã QR động dùng 1 lần và mã PIN dự phòng | QT3a-B1 G1, C.3a.2, VG06 |
+| G20 | Cuối tháng Chủ quán phải mở tệp Excel, thu thập số liệu từ 5 nguồn rời rạc qua 6 bước thủ công mất khoảng 60 phút để tính Lãi/Lỗ | Các nguồn dữ liệu không có khóa liên kết tự động, mất nhiều công sức tổng hợp | Thiếu báo cáo Lãi/Lỗ tháng tự động hợp nhất từ doanh thu, nguyên liệu, tiền lương và chi phí khác | R07 | F07-B: Báo cáo Lãi/Lỗ tháng 7 dòng chuẩn tự động truy vấn và tính toán từ 4 nguồn dữ liệu gốc | QT3b-K bước 1 đến 6, VII.2.A, CQ08, VG07 |
+| G21 | Các khoản chi phí cố định (thuê mặt bằng, điện, nước) và chi phí phát sinh chỉ được gõ vào tệp Excel cá nhân vào cuối tháng | Chưa có sổ ghi nhận các khoản chi phí vận hành ngoài nguyên liệu và tiền lương trên hệ thống | Thiếu phân hệ ghi chép chi phí cố định và phát sinh hằng tháng | R07 | F07-A: Sổ ghi nhận và quản lý chi phí cố định, chi phí phát sinh tích hợp trực tiếp vào báo cáo Lãi/Lỗ | QT3b-K bước 4, C.3b.6, CQ04, VG07 |
+| G22 | Chủ quán chỉ tính kết quả kinh doanh tổng hợp theo từng tháng, không tính giá vốn hay lãi gộp cho từng ly đồ uống | Không có định mức nguyên liệu chuẩn cho từng món đồ uống | Chủ quán xác nhận bác bỏ yêu cầu tính lãi gộp theo từng món và theo từng ca | R08 (Loại) | Không xây dựng báo cáo lãi gộp theo món; tập trung vào báo cáo Lãi/Lỗ tổng hợp theo tháng (F07-B) | QT3b-K C.3b.8, NC-01 C8, CQ07, VG08 |
+| G23 | Khi chuyển từ cách tính Excel thủ công sang phần mềm mới, Chủ quán cần kiểm tra xem con số máy tính ra có khớp với cách tính tay không | Chưa có công cụ đặt số liệu tự động của hệ thống cạnh số liệu tính tay để so sánh | Thiếu bảng đối chiếu chênh lệch giữa số liệu hệ thống và số liệu Excel thủ công | R07 | F07-C: Cửa sổ đối chiếu cho phép nhập số tính tay bằng Excel và tự động hiển thị mức chênh lệch từng mục | Yêu cầu nghiệm thu hệ thống của nhóm (D13) |
 
-## 2. Các khoảng trống cố ý không lấp
+## 2. Tổng hợp các hạng mục cố ý loại trừ khỏi phạm vi hệ thống
 
-| Nội dung | Lý do | Căn cứ |
+| Hạng mục loại trừ | Lý do nghiệp vụ và kỹ thuật | Căn cứ xác nhận |
 |---|---|---|
-| Tự tính tiền két theo công thức (Hệ thống − CK − Thiếu + vốn đầu ngày) | Chủ quán bác (tiền lẻ thay đổi; đổi chế độ thanh toán lúc đông khách gây rối) | R02, VG02 |
-| Công thức/định mức pha chế, tồn kho theo định mức | Chủ quán bác (gia giảm theo khách, số lệch dễ gây hiểu nhầm) | R05, VG05 |
-| Lãi gộp/giá vốn theo món, theo ca | Chủ quán bác | R08, VG08 |
-| Phân tách tiền mặt/chuyển khoản trên POS | Quán chủ động không bấm chọn khi đông khách (S của nhóm); R02 bị bác | M13, QS04, VG02 |
-| Kiểm soát bill bị quên, quản lý khách hàng, bán qua app, xếp ca tự động | Chưa đủ căn cứ, nằm ngoài danh sách requirement | Phụ lục B mục 2 |
+| Tự động tính công thức tiền két cố định khi giao ca | Tiền lẻ để lại đầu ca thay đổi linh hoạt và nhân viên không tách phương thức thanh toán trên POS lúc đông khách | R02, VG02 |
+| Tự động trừ tồn kho nguyên liệu theo định mức pha chế | Lượng nguyên liệu thực tế gia giảm theo khẩu vị khách hàng, tính tồn kho lý thuyết sẽ gây lệch số và hiểu nhầm | R05, VG05 |
+| Báo cáo giá vốn và lãi gộp chi tiết theo từng món hoặc từng ca | Quán chỉ quản lý hiệu quả tài chính theo kỳ kế toán tháng | R08, VG08 |
 
-## 3. Số đo AS-IS dùng làm đường cơ sở nghiệm thu
+## 3. Chỉ số hiện trạng (As-Is Baseline) dùng làm cơ sở đánh giá hiệu quả
 
-| Chỉ số | Giá trị AS-IS | Căn cứ |
+| Quy trình nghiệp vụ | Mức độ tiêu tốn nguồn lực ở hiện trạng (As-Is) | Cải thiện đạt được trên hệ thống mới (To-Be) | Căn cứ khảo sát |
+|---|---|---|---|
+| Chốt ca và bàn giao cuối ca | Thực hiện qua 5 bước, 2 lần chép tay số liệu, dữ liệu phân tán ở 4 nơi, mất khoảng 10 phút mỗi ca | Nhập trực tiếp 1 lần trên biểu mẫu điện tử, tự động lấy doanh thu POS tham chiếu và ký nhận trực tuyến | QT1-B1 Bảng H, NC-02 C4 |
+| Nhận hàng và lưu trữ chứng từ nhập | Mất khoảng 30 phút kiểm đếm và chụp ảnh báo Zalo, thông tin nằm ở 2 nơi rời rạc và không vào sổ kế toán | Ghi nhận trực tiếp phiếu nhập kèm ảnh chứng từ ngay tại quầy, tự động cộng vào chi phí nguyên liệu tháng | QT2-B1 Bảng H |
+| Tổng hợp báo cáo Lãi/Lỗ cuối tháng | Gom thủ công từ 5 nguồn dữ liệu qua 6 bước trên Excel, mất khoảng 60 phút mỗi cuối tháng | Hợp nhất tự động 100% theo thời gian thực ngay trên bảng Báo cáo Lãi/Lỗ 7 dòng, xuất ngay Excel và PDF | QT3b-K Bảng H, M11, CQ08 |
+
+## Phụ lục: Bảng tổng hợp các quyết định thiết kế đã thống nhất (D01 đến D28)
+
+| Mã quyết định | Nội dung vấn đề cần làm rõ từ khảo sát | Quyết định thiết kế đã chốt và áp dụng vào hệ thống |
 |---|---|---|
-| Chốt ca cuối ngày | 5 bước, 2 lần chép lại, 4 nơi chứa số liệu; khoảng 10 phút (N) | QT1-B1 Bảng H; NC-02 C4 |
-| Nhận hàng và ghi chứng từ | khoảng 30 phút; thông tin nằm ở 2 nơi (chứng từ giấy, ảnh Zalo); 0 nơi ghi sổ/POS | QT2-B1 Bảng H |
-| Gom lãi/lỗ cuối tháng | 5 nguồn, 6 bước, khoảng 60 phút (ước lượng, N) | QT3b-K Bảng H; M11 lưu ý con số là ước lượng cả buổi |
-
-Mục tiêu số cụ thể (ví dụ "dưới X phút") **chưa có trong tài liệu**; mọi tiêu chí nghiệm thu trong `function-rationale.md` được viết theo dạng so với đường cơ sở này hoặc kiểm tra được bằng test.
-
-## Phụ lục. Các điểm chưa có căn cứ / cần nhóm quyết (D01–D28)
-
-Mỗi mục ghi cách hệ thống sẽ xử lý **tạm thời** nếu chưa có quyết định.
-
-| Mã | Điểm chưa có căn cứ hoặc mâu thuẫn | Xử lý tạm đề xuất |
-|---|---|---|
-| D01 | Yêu cầu của nhóm viết "đối chiếu doanh thu hệ thống với tiền thực nhận, ghi chênh lệch" ở R03, trong khi R02/VG02 bị bác và R03 ghi "không tự động tính công thức cứng". Tự tính chênh lệch chính là công thức R02 | Không tự tính tiền két. Chỉ lưu các số nhân viên nhập (Hệ thống, CK, Thiếu/trả, Phát sinh, Thực tế giao) + lý do. Cảnh báo chênh lệch (E-06) nếu có, chỉ dựa trên số do nhân viên nhập |
-| D02 | Vai trò "Quản lý ca" và "Kế toán/Xem" không có trong hiện trạng (mỗi ca 1 người; chỉ chủ quán theo dõi số liệu). Người giao ca và nhận hàng theo R03/R04 là nhân viên đứng ca, trong khi vai trò Nhân viên theo yêu cầu chỉ xem lịch/khai báo/đổi ca | Quyền theo năng lực (RBAC); gán "giao ca, nhập hàng, báo nguyên liệu" cho tài khoản nhân viên đang đứng ca. Chủ quán quyết vai trò Quản lý ca là ai |
-| D03 | R09 trong yêu cầu của nhóm gồm "tồn kho ước tính từ nhập hàng" và "cảnh báo giá tăng bất thường". R09 ghi "không tự động tính tồn kho theo định mức"; chưa có dữ liệu tiêu hao (NV08, NC-03 C6, QS03) nên tồn ước tính từ nhập hàng sẽ chỉ tăng; VG05 cảnh báo số lệch gây hiểu nhầm. Cảnh báo giá tăng chưa có căn cứ trực tiếp (chỉ NC-01 C3 nói giá nguyên liệu lên) và trùng mục f của MỞ RỘNG | Lõi R09: danh mục + đơn vị + giá nhập gần nhất (suy từ R04) + báo trạng thái đủ/sắp hết/hết. Tồn ước tính và cảnh báo giá tăng chuyển sang MỞ RỘNG (E-07, E-08) hoặc bỏ |
-| D04 | CĐ-GV (R06 Đường 2) chưa có văn bản trong bộ tài liệu; chủ quán chỉ xác nhận phần tính công/lương (VG06). Hiện chủ quán chỉ được báo đổi ca cuối tháng; yêu cầu mới là duyệt trước, đổi hành vi | Xây theo CĐ-GV, gắn nhãn đúng cụm "Căn cứ: Chỉ đạo tối ưu hóa tự động hóa từ Giảng viên hướng dẫn". Đề nghị lưu bản tin nhắn/biên bản chỉ đạo vào `docs/` để có mã tham chiếu |
-| D05 | Ranh giới giờ của ca sáng/trưa/tối chưa có (chỉ có độ dài 5,5/5,5/4,0 giờ; mở 06:30, đóng 21:15; nhân viên đến sớm 06:15) | Không gán đơn POS theo ca; `start/end` của ca để trống, cấu hình được |
-| D06 | Giá trị a, b đã che; chưa rõ theo từng người hay chung | Cấu hình chung do chủ quán nhập; dữ liệu demo dùng số giả, ghi rõ |
-| D07 | Định nghĩa "doanh thu": `TotalPayment` hay `Total`; cột "Thanh toán" của file xuất là số tiền hay phương thức (M13). Ảnh IMG-QS02 cho thấy cột này canh phải như cột số (S) | Doanh thu = Σ `paid` (TotalPayment/Thanh toán) của đơn hợp lệ; lưu `total` và `discount` để đối chiếu |
-| D08 | PDF không liệt kê giá trị `Status` (chỉ có ví dụ `Status: 2`) và không nói về dòng tổng `Id = -1`/`Σ`; nhóm cho biết đã kiểm chứng thực tế | Nhận đơn `Status = 2`; loại dòng tổng và đơn hủy theo mô tả của nhóm. Lưu kết quả `tools_probe_pos365.py` (đã che) vào docs để làm căn cứ |
-| D09 | PDF không nêu tham số lọc theo ngày và thứ tự mặc định của `/api/orders`; ví dụ trong PDF ghi năm 2022 (v1.0 14/06/2021) nên hành vi có thể đã đổi | Probe trước; nếu không lọc được theo ngày, đồng bộ theo trang rồi lọc phía ứng dụng |
-| D10 | Múi giờ của cột "Ngày tạo" trong file xuất chưa rõ | Coi là giờ địa phương GMT+7; đối chiếu với API cùng ngày để kiểm tra |
-| D11 | Điện nước thuộc mục nào trong 4 mục của Excel chủ quán (M11); VII.1 xếp điện, nước vào "Chi phí cố định khác" (N) | Xếp vào nhóm "cố định" |
-| D12 | R04 không nêu đính kèm ảnh hóa đơn; chỉ có căn cứ gián tiếp (nhân viên chụp ảnh gửi Zalo, QT2-B1 C.2.6 T). Ảnh chứa tên nhà cung cấp, số tiền | Làm tính năng tùy chọn trong F04-B, ghi rõ căn cứ gián tiếp; ảnh Live không đưa vào repo |
-| D13 | Bảng đối chiếu với cách tính thủ công (F07-C) là nhu cầu nghiệm thu của nhóm; chủ quán chưa xác nhận và không cung cấp được chi tiết file Excel (CQ04) | Giữ như công cụ kiểm chứng của nhóm; số tham chiếu do người dùng nhập tay |
-| D14 | "Real-time sync" khi duyệt đổi ca: tài liệu không nói mức độ | Hiểu là cập nhật CSDL trong một giao dịch ngay khi duyệt + giao diện tự làm mới định kỳ; đẩy tức thời (WebSocket) để ở MỞ RỘNG |
-| D15 | Mức chi tiết đổi ca: nguyên ca hay từng phần (NC-01 C2: đến trễ/về sớm nhờ nhau phụ đứng "khoảng đó") | Chỉ đổi theo nguyên ca; không tính lương theo giờ lẻ |
-| D16 | Ai được xem lương: chưa có căn cứ (hiện mỗi người tự tính và gửi riêng chủ quán qua Zalo cá nhân: NC-01 C2) | Nhân viên chỉ xem lương của mình; chủ quán xem tất cả |
-| D17 | MỞ RỘNG "bật/tắt được" nhưng đăng nhập và vai trò là điều kiện của R06 Đường 2 (cần biết nhân viên nào khai báo/đổi ca) và của dữ liệu thật ở Live | Phiên đăng nhập + vai trò tối thiểu là hạ tầng bắt buộc; khi `APP_MODE=live` không cho tắt |
-| D18 | Thư mục hiện có không nằm trong tệp đính kèm. **Đã chốt 12/11:** nhóm cho phép dựng khung mới | Đã dựng khung mới (xem README) |
-| D08 | Bảng mã `Status` của POS365: ví dụ PDF chỉ có giá trị 2 | **ĐÃ ĐÓNG (13/11/2026):** Kiểm chứng thực tế qua probe: `Status = 2` là hóa đơn hoàn tất hợp lệ. Hệ thống chỉ nhận `Status = 2`, bỏ qua các đơn hủy/chưa hoàn tất. |
-| D09 | Lọc theo ngày và thứ tự trả về của POS365 | **ĐÃ ĐÓNG (13/11/2026):** API POS365 trả về theo thứ tự **mới đến cũ** (`PurchaseDate` giảm dần). Cơ chế đồng bộ cải tiến dừng quét ngay khi gặp đơn cũ hơn mốc `POS365_SYNC_FROM_DATE` và chặn ở `POS365_SYNC_MAX_PAGES`, khắc phục triệt để lỗi treo request khi kéo 15.829 đơn. |
-| D19 | Mã chứng từ có tiền tố "OFFLI…" thấy trong IMG-QS02 (đơn tạo offline); chưa rõ mã có đổi khi đồng bộ, nên chống trùng theo `doc_code` có thể bỏ sót | **ĐÃ ĐÓNG (13/11/2026):** Chống trùng tuyệt đối theo `doc_code`. Hóa đơn offline khi đồng bộ lên hệ thống giữ nguyên mã chứng từ POS365 phát hành; gắn cờ cảnh báo đối soát nếu phát hiện trùng giờ + số tiền. |
-| D20 | PDF §1 yêu cầu đăng nhập bằng tài khoản admin của cửa hàng; chưa rõ tài khoản quyền thấp có đủ gọi `/api/orders` không | Tài khoản/SessionId chỉ ở `.env.live`; không commit; probe thử quyền thấp nếu chủ quán cho phép |
-| D21 | Chấm công vào/ra (E-09): chủ quán chỉ nói "nếu được" (VG06), R06 xếp mức Low; chưa có quy trình/thiết bị, chưa có quy tắc đi trễ/về sớm | Không xây; chờ nhóm quyết có đưa vào Demo hay không |
-| D22 | Khôi phục tài khoản chủ quán khi quên mật khẩu (E-02): chưa có căn cứ về cách làm; POS từng gặp sự cố mật khẩu cuối tháng 8 (NC-01 C11) | Chưa xây; chờ quyết định |
-
-## Kết quả duyệt Bước 1 (11/11/2026)
-
-**Đã chốt:**
-
-| Mã | Quyết định |
-|---|---|
-| D01 | R03 chỉ lưu số nhân viên nhập (Hệ thống, CK, Thiếu/trả, Phát sinh, Thực tế giao) và lý do; không tự tính |
-| D02 | Quyền R03, R04, R09 gắn cho tài khoản Nhân viên đang đứng ca. Quản lý ca và Kế toán/Xem: để sau, chỉ giữ chỗ trong mô hình |
-| D03 | Lõi R09: danh mục, giá nhập gần nhất (từ R04), trạng thái đủ/sắp hết/hết. Tồn kho ước tính để sau (E-08 loại) |
-| D04 | R06 Đường 2 (duyệt đổi ca trước) vào **lõi**, do nhóm đề xuất phát triển trên gợi ý của giảng viên |
-| D05, D06 | Khung giờ ca và a, b do chủ quán tự cấu hình trên giao diện |
-| D07 | Doanh thu = `TotalPayment` |
-| D15 | Hai loại yêu cầu: đổi nguyên ca (đổi lịch) và phụ giữa ca/vắng nửa ca (chỉ cờ ở F06-G, không đổi lịch/lương). Căn cứ nền của loại 2: NC-01 C2 |
-| D17 | E-01 và E-02 bắt buộc, không tắt khi `APP_MODE=live` |
-| — | Giữ E-01…E-05, E-11; E-09 thành chấm công QR chỉ log (lương tính theo lịch); loại E-06, E-07, E-08, E-10, E-12; thêm E-13 |
-
-**Điểm mới phát sinh, cần nhóm xác nhận (có xử lý tạm):**
-
-| Mã | Điểm | Xử lý tạm |
-|---|---|---|
-| D23 | **Đã chốt 12/11:** `duty_require_schedule` mặc định **tắt** ở cả Demo và Live; nhân viên thao tác ngày không có trong lịch vẫn lưu được, bản ghi gắn cờ "Ngoài lịch phân công" (E-04), không 403; chủ quán bật/tắt ở Cài đặt | Như đã chốt |
-| D24 | E-13 (xếp lịch nháp): không phải requirement (Phụ lục B mục 2); quy tắc 3 chưa có căn cứ. **Tham số đã chốt 12/11:** `cluster_fairness_slack = 1`, `max_shifts_per_day = 2` (tránh ôm 3 ca) | MỞ RỘNG; hòa thì chọn mã nhỏ hơn; các tham số chỉnh được ở Cài đặt |
-| D25 | Phụ giữa ca: chủ quán "tự cộng/trừ tay" nên hệ thống không lưu khoản điều chỉnh | Chỉ hiển thị cờ ở F06-G; không có trường tiền |
-| D26 | Chấm công QR: camera trình duyệt không mở được trên HTTP/LAN | QR chứa URL, quét bằng camera điện thoại; token HMAC ngắn hạn |
-| D27 | Bộ test và mã Bước 2 hiện chạy được cho phần logic thuần Python; môi trường soạn thảo không có FastAPI/SQLAlchemy/Postgres/Docker | Xem báo cáo Bước 2: phần chưa chạy thử được ghi rõ |
-| D28 | Bố cục thật của file lịch ca trên Zalo chưa được quan sát (chỉ biết là bảng tính, QT3a-B1 C.3a.1). **Đã chốt 12/11:** hỗ trợ hai định dạng có nút tải file mẫu (1: lưới Ngày/Thứ + Ca Sáng/Trưa/Tối; 2: phẳng Ngày/Mã ca/Tên nhân viên); file mẫu giả lập `data/mock/sample_schedule_2026_11.xlsx` | Nếu file thật của quán khác hai dạng này, cần thêm bộ đọc |
-
-Còn mở từ trước: D08–D14, D16, D18–D22 (xử lý tạm ở bảng trên).
+| D01 | Cách thức xử lý số liệu tiền mặt và chênh lệch trên biên bản giao ca (R03) khi R02 đã bị loại bỏ | Hệ thống lưu đúng 5 chỉ số do nhân viên kiểm đếm và nhập tay kèm lý do giải trình, hiển thị thêm doanh thu POS để tham chiếu và cảnh báo khi lệch trên 10%. |
+| D02 | Phân định quyền hạn thao tác cho nhân viên đứng ca trên hệ thống | Áp dụng phân quyền theo vai trò (RBAC) gồm Chủ quán (`owner`) và Nhân viên (`staff`). Nhân viên được phép lập phiếu giao ca, nhập hàng và báo nguyên liệu. |
+| D03 | Phạm vi của phân hệ Quản lý nguyên liệu (R09) | Tập trung vào quản lý danh mục, tự động lấy giá nhập gần nhất từ phiếu nhập (R04) và quy trình báo cáo trạng thái kho (Đủ, Sắp hết, Hết, Đã đặt hàng). |
+| D04 | Đưa quy trình đăng ký lịch rảnh và phê duyệt đổi ca trực tuyến (R06 Đường 2) vào chức năng lõi | Triển khai đầy đủ cả Đường 1 (nạp tệp lịch Excel từ Zalo) và Đường 2 (khai báo lịch rảnh, xếp lịch, duyệt đổi ca trên web) theo định hướng CĐ-GV. |
+| D05, D06 | Thiết lập khung giờ các ca làm việc và đơn giá lương `a`, `b` | Cung cấp giao diện trong mục Cài đặt để Chủ quán chủ động chỉnh sửa số giờ ca, giờ bắt đầu/kết thúc và đơn giá lương `a`, `b`. |
+| D07 | Trường dữ liệu dùng làm doanh thu chính thức từ POS365 | Sử dụng tổng cột thực thu `TotalPayment` (tương ứng cột `Thanh toán` trong tệp xuất) của các hóa đơn hoàn tất làm doanh thu chuẩn. |
+| D08, D09, D19 | Quy tắc lọc hóa đơn hợp lệ, thứ tự phân trang và chống trùng đơn ngoại tuyến của API POS365 | Chỉ nhận hóa đơn có `Status = 2`, loại bỏ dòng tổng `Id = -1`. Tự động dừng quét phân trang khi gặp đơn cũ hơn mốc ngày cấu hình và chống trùng theo `doc_code`. |
+| D10 | Múi giờ của cột Ngày tạo trong tệp bảng tính xuất từ POS365 | Xử lý theo múi giờ địa phương Việt Nam (GMT+7) và đồng bộ nhất quán với dữ liệu từ API. |
+| D11 | Phân loại khoản chi tiền điện và tiền nước hằng tháng | Xếp tiền điện, tiền nước và tiền thuê mặt bằng vào nhóm Chi phí cố định (`co_dinh`) theo đúng mục VII.1. |
+| D12 | Tính năng đính kèm ảnh chụp chứng từ trong phiếu nhập hàng (F04-B) | Cho phép đính kèm nhiều ảnh cho mỗi phiếu nhập và kiểm tra mã băm SHA-256 để cảnh báo khi tải lên ảnh trùng lặp. |
+| D13 | Công cụ đối chiếu số liệu hệ thống với bảng tính Excel thủ công (F07-C) | Tích hợp cửa sổ "Đối chiếu với Excel" ngay trên trang Quản lý Tài chính để phục vụ kiểm chứng nghiệm thu. |
+| D14 | Cơ chế cập nhật dữ liệu sau khi Chủ quán duyệt yêu cầu đổi ca | Thực hiện cập nhật lịch phân công trong cùng một giao dịch cơ sở dữ liệu ngay khi bấm duyệt và thông báo qua biểu tượng Chuông thông báo. |
+| D15, D25 | Xử lý hai trường hợp đổi nguyên ca và nhờ người làm phụ giữa ca | Đổi nguyên ca tự động chuyển người đứng ca và tính lại lương. Nhờ phụ giữa ca giữ nguyên lịch gốc và hiển thị thẻ ghi chú trên màn hình lương để Chủ quán tự điều chỉnh. |
+| D16 | Quyền xem thông tin bảng lương tháng | Nhân viên đăng nhập chỉ xem được chi tiết công và lương của chính mình. Chủ quán xem và chốt được toàn bộ bảng lương của quán. |
+| D17 | Tính bắt buộc của phân quyền (E-01) và bảo mật phiên (E-02) | Bắt buộc kích hoạt trong mọi trường hợp để định danh người thao tác trên các biên bản và bảo vệ dữ liệu tài chính. |
+| D23 | Xử lý khi nhân viên thao tác giao ca hoặc nhập hàng vào ngày không có trong lịch phân công | Mặc định cho phép lưu bản ghi và gắn cờ cảnh báo "Ngoài lịch phân công" để không làm gián đoạn vận hành thực tế tại quầy. |
+| D24 | Tham số thuật toán gợi ý xếp lịch nháp tự động (E-13) | Mặc định giới hạn tối đa 2 ca mỗi người mỗi ngày (`max_shifts_per_day = 2`) và độ lệch ưu tiên cụm ca liền kề bằng 1 (`cluster_fairness_slack = 1`). |
+| D26 | Giải pháp kỹ thuật cho tính năng chấm công bằng mã QR trên mạng nội bộ HTTP (E-09) | Triển khai màn hình Máy quầy (`/kiosk`) hiển thị mã QR động dùng 1 lần để nhân viên quét bằng điện thoại cá nhân hoặc nhập mã PIN dự phòng. |
+| D28 | Định dạng tệp bảng tính lịch phân ca khi nạp vào hệ thống (F06-B) | Hỗ trợ đồng thời cả định dạng bảng lưới theo ngày và định dạng danh sách phẳng kèm nút tải tệp mẫu `.xlsx` trực tiếp trên giao diện. |

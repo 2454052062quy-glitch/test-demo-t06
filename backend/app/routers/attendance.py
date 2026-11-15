@@ -14,8 +14,8 @@ from sqlalchemy.orm import Session
 
 from ..db import get_db
 from ..deps import (
-    COOKIE, Actor, assigned_on, audit, current_actor, get_config,
-    get_setting, month_days, owner_only, set_setting, today_vn, valid_month,
+    COOKIE, Actor, audit, current_actor, get_config,
+    get_setting, has_active_shift, is_out_of_schedule_at, month_days, owner_only, set_setting, today_vn, valid_month,
 )
 from ..models import AttendanceLog, Employee, KioskQrToken, PosKioskSession, SessionToken, User
 from ..security import expiry, new_token, utcnow
@@ -67,7 +67,7 @@ def _auto_close_session_if_needed(session: PosKioskSession, reason: str, db: Ses
     session.closed_at = now
     session.close_reason = reason
     d = now.astimezone(timezone.utc).date()
-    off = not assigned_on(db, session.employee_id, d)
+    off = is_out_of_schedule_at(db, session.employee_id, d, now)
     log = AttendanceLog(
         employee_id=session.employee_id,
         work_date=d,
@@ -267,7 +267,9 @@ def mobile_preview(token: str, actor: Actor = Depends(current_actor), db: Sessio
             .order_by(AttendanceLog.id.desc())
         )
         kind = next_kind(last.kind if last else None)
-    off = not assigned_on(db, actor.employee_id, d)
+    if kind == "out" and not has_active_shift(db, actor.employee_id):
+        raise HTTPException(400, "Bạn chưa thực hiện Vào ca nên không thể Ra ca")
+    off = is_out_of_schedule_at(db, actor.employee_id, d, now)
     emp = db.get(Employee, actor.employee_id)
 
     action_text = "đăng nhập vào máy quầy" if kind == "in" else "tan ca"
@@ -310,7 +312,18 @@ def mobile_confirm(body: MobileConfirmBody, actor: Actor = Depends(current_actor
             .order_by(AttendanceLog.id.desc())
         )
         kind = next_kind(last.kind if last else None)
-    off = not assigned_on(db, actor.employee_id, d)
+    if kind == "out" and not has_active_shift(db, actor.employee_id):
+        raise HTTPException(400, "Bạn chưa thực hiện Vào ca nên không thể Ra ca")
+    off = is_out_of_schedule_at(db, actor.employee_id, d, now)
+
+    # Cảnh báo nghiệp vụ: RA CA nhưng hôm nay chưa có lượt VÀO CA nào còn mở
+    last_today = db.scalar(
+        select(AttendanceLog)
+        .where(AttendanceLog.employee_id == actor.employee_id, AttendanceLog.work_date == d)
+        .order_by(AttendanceLog.id.desc())
+    )
+    missing_in = kind == "out" and (last_today is None or last_today.kind != "in")
+    note = "Thiếu QR vào ca" if missing_in else ""
 
     log = AttendanceLog(
         employee_id=actor.employee_id,
@@ -320,6 +333,7 @@ def mobile_confirm(body: MobileConfirmBody, actor: Actor = Depends(current_actor
         out_of_schedule=off,
         method="qr",
         auto_closed=False,
+        note=note,
     )
     db.add(log)
     db.flush()
@@ -349,6 +363,7 @@ def mobile_confirm(body: MobileConfirmBody, actor: Actor = Depends(current_actor
     return {
         "kind": kind,
         "out_of_schedule": off,
+        "missing_clock_in": missing_in,
         "employee_name": emp.display_name if emp else actor.display_name,
         "log_id": log.id,
     }
@@ -478,7 +493,9 @@ def end_shift_kiosk(body: EndShiftKioskBody, response: Response, actor: Actor = 
 
     now = utcnow()
     d = today_vn()
-    off = not assigned_on(db, user.employee_id, d)
+    if not has_active_shift(db, user.employee_id):
+        raise HTTPException(400, "Bạn chưa thực hiện Vào ca nên không thể Ra ca")
+    off = is_out_of_schedule_at(db, user.employee_id, d, now)
     method = "pin" if body.pin else "qr"
 
     log = AttendanceLog(
@@ -511,6 +528,7 @@ def end_shift_kiosk(body: EndShiftKioskBody, response: Response, actor: Actor = 
         "ok": True,
         "kind": "out",
         "employee_name": emp.display_name if emp else user.display_name,
+        "at": now.isoformat(),
     }
 
 
@@ -554,7 +572,10 @@ def kiosk_pin_login(body: PinLoginBody, response: Response, db: Session = Depend
             _auto_close_session_if_needed(old_sess, "next_shift", db, now)
         kind = "in"
 
-    off = not assigned_on(db, user.employee_id, d)
+    if kind == "out" and not has_active_shift(db, user.employee_id):
+        raise HTTPException(400, "Bạn chưa thực hiện Vào ca nên không thể Ra ca")
+
+    off = is_out_of_schedule_at(db, user.employee_id, d, now)
     log = AttendanceLog(
         employee_id=user.employee_id,
         work_date=d,
